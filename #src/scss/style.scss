@@ -174,12 +174,25 @@ nav{
 }
 .slides-comp-show{
     position: absolute;
-    top: 0;
-    left: 0;
-    animation: move 6s infinite;
+    top: 50px;
+    left: 30px;
 }
-
-@keyframes move{
+.slides-comp-show:nth-child(2){
+    --scaleTranslateX: 0px;
+    --scaleTranslateY: 0px;
+    animation: move3 6s infinite;
+}
+.slides-comp-show:nth-child(3){
+    --scaleTranslateX: -20px;
+    --scaleTranslateY: -20px;
+    animation: move2 6s infinite;
+}
+.slides-comp-show:nth-child(4){
+    --scaleTranslateX: -40px;
+    --scaleTranslateY: -40px;
+    animation: move1 6s infinite;
+}
+@keyframes move1{
     from{
         opacity: 0;
     }
@@ -187,19 +200,67 @@ nav{
         opacity: 1;
     }
     20%{
-        transform: translate(-40px, -40px);
+        transform: translate(var(--scaleTranslateX), var(--scaleTranslateY));
         opacity: 1;
     }
     40%{ 
-        transform: translate(-40px, -40px);
+        transform: translate(var(--scaleTranslateX), var(--scaleTranslateY));
         opacity: 1;
     }
-    50%{
-        transform: translate(-400px, -40px);
+    47%{
+        transform: translate(-400px, var(--scaleTranslateY));
         opacity: 0;
     }
     to{
-        transform: translate(-400px, -40px);
+        transform: translate(-400px , var(--scaleTranslateY));
+        opacity: 0;
+    }
+}
+@keyframes move2{
+    from{
+        opacity: 0;
+    }
+    15%{
+        opacity: 1;
+    }
+    20%{
+        transform: translate(var(--scaleTranslateX), var(--scaleTranslateY));
+        opacity: 1;
+    }
+    40%, 68%{ 
+        transform: translate(var(--scaleTranslateX), var(--scaleTranslateY));
+        opacity: 1;
+    }
+    75%{
+        transform: translate(-400px, var(--scaleTranslateY));
+        opacity: 0;
+    }
+    to{
+        transform: translate(-400px , var(--scaleTranslateY));
+        opacity: 0;
+    }
+}
+@keyframes move3{
+    from{
+        opacity: 0;
+    }
+    15%{
+        opacity: 1;
+    }
+    20%{
+        transform: translate(var(--scaleTranslateX), var(--scaleTranslateY));
+        opacity: 1;
+    }
+    40%, 83%{ 
+        transform: translate(var(--scaleTranslateX), var(--scaleTranslateY));
+        opacity: 1;
+    }
+    90%{
+        transform: translate(-400px, var(--scaleTranslateY));
+        opacity: 0;
+    }
+    to{
+        transform: translate(-400px , var(--scaleTranslateY));
         opacity: 0;
     }
 }
