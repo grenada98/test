@@ -45,12 +45,95 @@ $(document).ready(function(){
           });
         $(".list-of-social").slick({
             arrows: true,
-            slidesToShow: 10
+            slidesToShow: 10,
+            responsive: [
+                {
+                    breakpoint: 740,
+                    settings: {
+                        slidesToShow: 5
+                    }
+                },
+                {
+                    breakpoint: 565,
+                    settings: {
+                        slidesToShow: 4
+                    }
+                },
+                {
+                    breakpoint: 459,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }
+            ]
         })
+        //////////////////////////////////////
 
+
+
+        /////////////////////////////////// select-social
+        const selectSocial = document.querySelector(".mobile-list-of-social-wrapper");
+        const selectSocialContent = document.querySelector(".mobile-list-of-social-content");
+        const selectSocialSubmenu = document.querySelector(".mobile-list-of-social");
+        const selectSocialSubmenuItem = Array.from(document.getElementsByClassName("item-mobile-list-of-social"));
+        selectSocial.addEventListener("click", function(){
+            console.log("SUbmenu");
+            if(selectSocialSubmenu.classList.contains("active")){
+                selectSocialSubmenu.classList.remove("active");
+            }
+            else{
+                selectSocialSubmenu.classList.add("active");
+            }
+        })
+        selectSocialSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
+            selectSocialContent.innerHTML = this.innerHTML;
+        })})
+        /////////////////////////////////////////////////////
+
+         /////////////////////////////////// select-services
+         const selectServices = document.querySelector(".mobile-list-of-services-wrapper");
+         const selectServicesContent = document.querySelector(".mobile-list-of-services-content");
+         const selectServicesSubmenu = document.querySelector(".mobile-list-of-services");
+         const selectServicesSubmenuItem = Array.from(document.getElementsByClassName("item-mobile-list-of-services"));
+         selectServices.addEventListener("click", function(){
+             console.log("SUbmenu");
+             if(selectServicesSubmenu.classList.contains("active")){
+                 selectServicesSubmenu.classList.remove("active");
+             }
+             else{
+                 selectServicesSubmenu.classList.add("active");
+             }
+         })
+         selectServicesSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
+             selectServicesContent.innerHTML = this.innerHTML;
+         })})
+         /////////////////////////////////////////////////////
+
+
+         ////////////////////////////////////////////////// select-tariff
+         const selectTariff = document.querySelector(".list-of-tariff-wrapper");
+         const selectTariffContent = document.querySelector(".list-of-tariff-content");
+         const selectTariffSubmenu = document.querySelector(".list-of-tariff");
+         const selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
+         let valueTariff = 0;
+         selectTariff.addEventListener("click", function(){
+             console.log("SUbmenu");
+             if(selectTariffSubmenu.classList.contains("active")){
+                 selectTariffSubmenu.classList.remove("active");
+                 console.log("SUbmenu1");
+             }
+             else{
+                 selectTariffSubmenu.classList.add("active");
+                 console.log("SUbmenu2");
+             }
+         })
+         selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
+             selectTariffContent.innerHTML = this.innerHTML;
+             selectTariffContent.dataset.value = this.dataset.value;
+             valueTariff = +this.dataset.value;
+         })})
 
         ///////////////////////////form input calculate tariff
-        const selectTariff = document.querySelector(".select-tariff");
         const countOfInputSub = document.querySelector(".count-value input");
         const inputSliderForSub =  document.querySelector(".js-input-for-count-sub");
         const totalSummForSub = document.querySelector(".total-value input");
@@ -59,7 +142,7 @@ $(document).ready(function(){
             let min = 500;
             let max = 10000;
             console.log(countOfInputSub.value);
-            let valueTariff = 0;
+            //let valueTariff = selectTariff.options[selectTariff.selectedIndex].value;;
             $(".js-input-for-count-sub").ionRangeSlider({
                 min: min,
                 max: max,
@@ -78,6 +161,7 @@ $(document).ready(function(){
                 countFromInput = countOfInputSub.value;
                 if (min<=countFromInput && countFromInput<=max){
                     countOfInputSub.value = countFromInput;
+                    totalSummForSub.value = (+countOfInputSub.value * +valueTariff).toFixed(2);
                     instance.update({
                         from: countFromInput
                     });
@@ -86,20 +170,22 @@ $(document).ready(function(){
                     if (countFromInput < min) {
                     countFromInput = min;
                     countOfInputSub.value = countFromInput;
+                    totalSummForSub.value = (+countOfInputSub.value * +valueTariff).toFixed(2);
                 } else if (countFromInput > max) {
                     countFromInput = max;
                     countOfInputSub.value = countFromInput;
+                    totalSummForSub.value = (+countOfInputSub.value * +valueTariff).toFixed(2);
                 }
                 instance.update({
                     from: countFromInput
                 });
             }
             });
-            selectTariff.addEventListener('click', function(){
+            /*selectTariff.addEventListener('click', function(){
                 valueTariff = selectTariff.options[selectTariff.selectedIndex].value;
                 totalSummForSub.value = +valueTariff * +countFromInput;
                 console.log(valueTariff + " " + countFromInput);
-            })
+            })*/
         }
         /////////////////////////////////////
 
@@ -138,4 +224,16 @@ $(document).ready(function(){
                     buttonLoadMore.classList.add("disabled");
                 }
         }})
+
+
+
+
+        document.addEventListener("click", function(e){
+            if(!e.target.classList.contains("mobile-list-of-social-content")){
+                selectSocialSubmenu.classList.remove("active");
+            }
+            if(!e.target.classList.contains("mobile-list-of-services-content")){
+                selectServicesSubmenu.classList.remove("active");
+            }
+        })
 })
