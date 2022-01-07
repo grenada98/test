@@ -105,14 +105,37 @@ $(document).ready(function(){
 
 
         ////////////////////accordeon
-        const accordeonQestion = Array.from(document.getElementsByClassName("question"));
-        accordeonQestion.forEach(function(el) {el.addEventListener('click', function (){
+        const accordeonQuestion = Array.from(document.getElementsByClassName("question"));
+        accordeonQuestion.forEach(function(el) {el.addEventListener('click', function (){
+            this.classList.add("active");
             let hideAccordeon = this.nextElementSibling;
             console.log(hideAccordeon);
             if (hideAccordeon.classList.contains("active")) {
-                hideAccordeon.classList.remove("active")
+                hideAccordeon.classList.remove("active");
+                this.classList.remove("active");
             } else {
                 hideAccordeon.classList.add("active")
             }
         })})
+        /////////////////////////////////////
+
+
+
+        //////////////////////// LOAD MORE
+        let countLoadComments = 3;
+        let feedBackComments = document.getElementsByClassName("item-feedback");
+        const buttonLoadMore = document.querySelector(".load-more-feedback");
+        for(let i = 3; i<feedBackComments.length; i++){
+            feedBackComments[i].classList.add("disabled");
+        }
+        buttonLoadMore.addEventListener('click', function(){
+            countLoadComments +=3;
+            if(feedBackComments.length>=countLoadComments){
+                for(let i=0; i<countLoadComments; i++){
+                    feedBackComments[i].classList.remove("disabled");
+                }
+                if(feedBackComments.length==countLoadComments){
+                    buttonLoadMore.classList.add("disabled");
+                }
+        }})
 })
