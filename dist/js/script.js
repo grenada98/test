@@ -68,8 +68,16 @@ $(document).ready(function(){
             ]
         })
         //////////////////////////////////////
-
-
+        const buttonEnterProfile = document.querySelector(".link-button.small")
+        const enterProfilePopup = document.querySelector(".enter-popup");
+        const mainDisabled = document.querySelector(".main-disabled");
+        const htmlDisabled = document.querySelector("html");
+        buttonEnterProfile.addEventListener("click", function(){
+            console.log("ENTER");
+            enterProfilePopup.classList.add("active");
+            mainDisabled.classList.add("active");
+            htmlDisabled.classList.add("disabled");
+        })
 
         /////////////////////////////////// select-social
         const selectSocial = document.querySelector(".mobile-list-of-social-wrapper");

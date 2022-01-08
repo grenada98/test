@@ -79,9 +79,6 @@ body {
   padding: 29px 0 78px 0;
 }
 
-.no-webp .section-1-wrapper {
-  background-image: url("../img/substrate.jpg"); }
-
 .section-1-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -92,9 +89,24 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  position: relative;
+}
+
+.section-1-wrapper-background {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.section-1-wrapper-background-adapt {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  display: none;
 }
 
 .header {
@@ -281,17 +293,17 @@ nav {
 }
 
 .section-1 .title {
-  font-size: 40px;
+  font-size: calc(22px + 18 * ((100vw - 320px) / 1600));
   font-weight: 800;
   color: white;
   line-height: 54.47px;
 }
 
 .section-1 .description {
-  font-size: 18px;
+  font-size: calc(12px + 6 * ((100vw - 320px) / 1600));
   font-weight: 400;
   color: white;
-  line-height: 24.51px;
+  line-height: 24.5px;
   margin-top: 25px;
 }
 
@@ -1494,6 +1506,13 @@ nav {
 }
 
 .item-feedback {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-color: #F8FAFD;
   padding: 10px 9px 10px 11px;
   margin-right: 20px;
@@ -1501,7 +1520,6 @@ nav {
   max-width: 376px;
   min-width: 376px;
   width: 100%;
-  display: block;
 }
 
 .item-feedback.disabled {
@@ -1905,16 +1923,133 @@ footer {
   line-height: 22px;
 }
 
+.main-disabled {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.main-disabled.active {
+  display: block;
+}
+
+.enter-popup {
+  max-width: 454px;
+  width: 100%;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #F8FAFD;
+  z-index: 9999;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.enter-popup.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.enter-popup .title {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 41px;
+  color: #545454;
+  margin-bottom: 20px;
+}
+
+.enter-popup .enter-email {
+  width: 100%;
+  text-align: start;
+  font-size: 18px;
+  font-weight: 700;
+  color: #545454;
+  line-height: 25px;
+  margin-bottom: 15px;
+}
+
+.enter-email-input,
+.enter-password-input {
+  width: 100%;
+  padding: 16px 15px 16px 15px;
+  background-color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #D4D4D4;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.password-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+.password-title-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.password-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #545454;
+  line-height: 25px;
+}
+
+.password-forger-question {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #78A1CF;
+}
+
 @media (max-width: 1900px) {
   .section-3-backimg {
     width: 100%;
   }
 }
 
-@media (max-width: 1370px) {
+@media (max-width: 1450px) {
+  .section-1-content {
+    padding-top: 0;
+  }
+
   .image-comp {
     width: 100%;
-    top: 50%;
+    top: 70%;
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
             transform: translateY(-50%);
@@ -1923,7 +2058,9 @@ footer {
   .image-comp img {
     width: 100%;
   }
+}
 
+@media (max-width: 1370px) {
   .slides-comp-show-main,
   .slides-comp-show {
     width: 78%;
@@ -2140,6 +2277,33 @@ footer {
   }
 }
 
+@media (max-width: 1225px) {
+  .header-wrapper {
+    padding-bottom: 29px;
+  }
+
+  .section-1 .title {
+    line-height: 30px;
+  }
+
+  .section-1 .description {
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 960px) {
+  .no-webp .section-1-wrapper {
+    background-image: url("../img/substrate.png"); }
+  .section-1-wrapper {
+    background-repeat: no-repeat;
+    background-size: 100% 64%;
+  }
+
+  .section-1-wrapper-background {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
   nav {
     margin-left: 10px;
@@ -2257,11 +2421,19 @@ footer {
 
 @media (max-width: 740px) {
   .section-1-wrapper {
+    background-size: 100% 70%;
+  }
+
+  .section-1-wrapper {
     padding-bottom: 40px;
   }
 
   .section-1-content {
     width: 100%;
+  }
+
+  .section-1 .title {
+    line-height: 22px;
   }
 
   .image-comp {
@@ -2298,6 +2470,20 @@ footer {
     -webkit-transform: none;
         -ms-transform: none;
             transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-1-wrapper-background {
+    display: none;
+  }
+
+  .section-1-wrapper-background-adapt {
+    display: block;
+  }
+
+  .section-1-wrapper {
+    background-image: none;
   }
 }
 
@@ -2351,6 +2537,8 @@ footer {
     width: 100%;
     max-width: 295px;
     min-width: 250px;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
   }
 
   .mobile-vote-feedback-wrapper {
@@ -2408,8 +2596,11 @@ footer {
   }
 }
 
-.webp .section-1-wrapper { background-image: url(../img/substrate.webp); }
-
 .webp .section-3-wrapper { background-image: url(../img/substrate2.webp); }
 
 .webp footer { background-image: url(../img/substratefooter.webp); }
+
+@media (max-width: 960px) {
+
+  .webp .section-1-wrapper { background-image: url(../img/substrate.webp); }
+}
