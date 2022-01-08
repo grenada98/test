@@ -97,6 +97,10 @@ body{
     z-index: -1;
     display: none;
 }
+.section-1-wrapper-background img,
+.section-1-wrapper-background-adapt img{
+    width: 100%;
+}
 .header{
     width: 100%;
     max-width: 1200px;
