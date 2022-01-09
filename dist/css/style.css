@@ -1591,6 +1591,39 @@ nav {
   overflow-x: auto;
 }
 
+.simplebar-track.simplebar-horizontal {
+  width: 100%;
+  margin: auto;
+  background-color: rgba(0, 0, 255, 0.1);
+  height: 4px;
+  border-radius: 3px;
+}
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+  opacity: 1;
+  top: 0;
+}
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar::before {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  opacity: 1;
+  background-color: #000;
+  height: 4px;
+}
+
+.simplebar-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 .item-feedback {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2012,16 +2045,25 @@ footer {
 .main-disabled {
   display: none;
   position: fixed;
+  width: 100%;
+  height: 100%;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
+  overflow-y: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-disabled.active {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .enter-popup,
@@ -2040,19 +2082,16 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
   background-color: #F8FAFD;
-  z-index: 9999;
   padding: 30px;
   border-radius: 10px;
+  z-index: 9999;
 }
 
 .enter-popup.active,

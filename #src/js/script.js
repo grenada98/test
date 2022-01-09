@@ -446,6 +446,13 @@ $(document).ready(function(){
         /////////////////////////////////////
 
 
+        /////////////////////////////////////// scrollbar
+        const listFeedback = document.querySelector('.list-of-feedback');
+        new SimpleBar(listFeedback, {
+            autoHide: true
+        });
+
+
 
         //////////////////////// LOAD MORE
         let countLoadComments = 3;
