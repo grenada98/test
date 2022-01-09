@@ -67,16 +67,119 @@ $(document).ready(function(){
                 }
             ]
         })
-        //////////////////////////////////////
-        const buttonEnterProfile = document.querySelector(".link-button.small")
-        const enterProfilePopup = document.querySelector(".enter-popup");
         const mainDisabled = document.querySelector(".main-disabled");
         const htmlDisabled = document.querySelector("html");
+        function pageDisable(){
+            mainDisabled.classList.add("active");
+            htmlDisabled.classList.add("disabled");
+        }
+        function pageActive(){
+            mainDisabled.classList.remove("active");
+            htmlDisabled.classList.remove("disabled");
+        }
+        ////////////////////////////////////// enter-popup
+        const buttonEnterProfile = document.querySelector(".link-button.small")
+        const enterProfilePopup = document.querySelector(".enter-popup");
         buttonEnterProfile.addEventListener("click", function(){
             console.log("ENTER");
             enterProfilePopup.classList.add("active");
-            mainDisabled.classList.add("active");
-            htmlDisabled.classList.add("disabled");
+            pageDisable();
+        })
+        ////////////////////////////////////////// enter-popup close
+        const closeEnterPopup = document.querySelector(".close-enter-popup");
+        closeEnterPopup.addEventListener("click", function(){
+            enterProfilePopup.classList.remove("active");
+            pageActive();
+        })
+        /////////////////////////////////////////// registration-popup
+        const buttonRegistrationProfile = document.getElementById("registration-account-link")
+        const registrationProfilePopup = document.querySelector(".registration-popup");
+        buttonRegistrationProfile.addEventListener("click", function(){
+            registrationProfilePopup.classList.add("active");
+            pageDisable();
+        })
+        //////////////////////////////////////////////registration popup close
+        const closeRegistrationPopup = document.querySelector(".close-registration-popup");
+        closeRegistrationPopup.addEventListener("click", function(){
+            registrationProfilePopup.classList.remove("active");
+            pageActive();
+        })
+
+
+
+
+
+
+        ///////////////////////////////////////////// recovery password popup
+        const buttonRecoveryPassword = document.querySelector(".password-forget-question")
+        const recoveryPasswordPopup = document.querySelector(".recovery-password-popup");
+        buttonRecoveryPassword.addEventListener("click", function(){
+            enterProfilePopup.classList.remove("active");
+            recoveryPasswordPopup.classList.add("active");
+            pageDisable();
+        })
+        ////////////////////////////////////////////// recovery password popup close
+        const closeRecoveryPasswordPopup = document.querySelector(".close-recovery-password-popup");
+        closeRecoveryPasswordPopup.addEventListener("click", function(){
+            recoveryPasswordPopup.classList.remove("active");
+            enterProfilePopup.classList.add("active");
+        })
+
+
+
+        ///////////////////////////////////////////////////////////// popular quest popup 
+        const buttonPopularQuest = document.querySelector(".questions-tariff-button");
+        const popularQuestPopup = document.querySelector(".popular-quest-popup");
+        buttonPopularQuest.addEventListener("click", function(){
+            popularQuestPopup.classList.add("active");
+            pageDisable();
+        })
+        /////////////////////////////////////////////////////////// popular quest popup close
+        const closePopularQuest = document.querySelector(".close-button");
+        closePopularQuest.addEventListener("click", function(){
+            popularQuestPopup.classList.remove("active");
+            pageActive();
+        })
+
+
+
+        //////////////////////////////////////////////////////////// offer continue
+        const buttonContinueOffer = document.querySelector(".services-order-continue-button");
+        const confirmationOfferPopup = document.querySelector(".confiramtion-offer-popup");
+        buttonContinueOffer.addEventListener("click", function(){
+            confirmationOfferPopup.classList.add("active");
+            pageDisable();
+        })
+        ////////////////////////////////////////////////////////// offer edit
+        const buttonEditOffer = document.querySelector(".icon-editoffer");
+        buttonEditOffer.addEventListener("click", function(){
+            confirmationOfferPopup.classList.remove("active");
+            pageActive();
+        })
+
+        ///////////////////////////////////////////// checkbox agree with rights
+        const checkboxRights = document.querySelector(".checkbox-wrapper");
+        console.log(checkboxRights);
+        checkboxRights.addEventListener("click", function(){
+            if(checkboxRights.classList.contains("active")){
+                checkboxRights.classList.remove("active");
+            }
+            else{
+                checkboxRights.classList.add("active");
+            }
+        })
+        ///////////////////////////// hide password
+        const showPasswordInput = document.querySelector(".icon-hidepassword");
+        const enterPasswordAccountInput = document.querySelector(".enter-password-input");
+        showPasswordInput.addEventListener("click", function(){
+            if(showPasswordInput.classList.contains("active")){
+                enterPasswordAccountInput.type = "password";
+                showPasswordInput.classList.remove("active");
+            }
+            else{
+                enterPasswordAccountInput.type = "text";
+                showPasswordInput.classList.add("active");
+            }
         })
 
         /////////////////////////////////// select-social
@@ -138,6 +241,25 @@ $(document).ready(function(){
          selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
              selectTariffContent.innerHTML = this.innerHTML;
              selectTariffContent.dataset.value = this.dataset.value;
+             valueTariff = +this.dataset.value;
+         })})
+
+        ////////////////////////////////////////////////// select-tariff edit popup
+         const selectTariffPopup = document.querySelector(".list-of-tariff-wrapper-popup");
+         const selectTariffContentPopup = document.querySelector(".list-of-tariff-content-popup");
+         const selectTariffSubmenuPopup = document.querySelector(".list-of-tariff-popup");
+         const selectTariffSubmenuItemPopup = Array.from(document.getElementsByClassName("item-list-of-tariff-popup"));
+         selectTariffPopup.addEventListener("click", function(){
+             if(selectTariffSubmenuPopup.classList.contains("active")){
+                 selectTariffSubmenuPopup.classList.remove("active");
+             }
+             else{
+                 selectTariffSubmenuPopup.classList.add("active");
+             }
+         })
+         selectTariffSubmenuItemPopup.forEach(function(el){ el.addEventListener("click", function(){
+             selectTariffContentPopup.innerHTML = this.innerHTML;
+             selectTariffContentPopup.dataset.value = this.dataset.value;
              valueTariff = +this.dataset.value;
          })})
 
@@ -232,7 +354,6 @@ $(document).ready(function(){
                     buttonLoadMore.classList.add("disabled");
                 }
         }})
-
 
 
 
