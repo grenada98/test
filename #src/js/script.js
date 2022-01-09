@@ -149,17 +149,78 @@ $(document).ready(function(){
         buttonContinueOffer.addEventListener("click", function(){
             confirmationOfferPopup.classList.add("active");
             pageDisable();
+            console.log(valueTariff);
+            selectTariffContentPopup.innerHTML = document.querySelector(`.item-list-of-tariff-popup[data-value="${valueTariff}"]`).innerHTML;
+            selectTariffContentPopup.dataset.value = valueTariff;
         })
-        ////////////////////////////////////////////////////////// offer edit
+        ////////////////////////////////////////////////////////// offer edit -> open popup edit offer
         const buttonEditOffer = document.querySelector(".icon-editoffer");
+        const editOfferPopup = document.querySelector(".edit-offer-popup");
         buttonEditOffer.addEventListener("click", function(){
             confirmationOfferPopup.classList.remove("active");
+            editOfferPopup.classList.add("active");
+        })
+        ////////////////////////////////////////////////////// pay -> edit
+        const buttonEditOfferPay = document.querySelector(".pay-offer-edit-button");
+        buttonEditOfferPay.addEventListener("click", function(){
+            payOfferPopup.classList.remove("active");
+            editOfferPopup.classList.add("active");
+        })
+
+
+        //////////////////////////////////////////////////// pay-offer popup
+        const buttonPayOffer = document.querySelector(".edit-services-order-continue-button");
+        const payOfferPopup = document.querySelector(".pay-offer-popup");
+        buttonPayOffer.addEventListener("click", function(){
+            editOfferPopup.classList.remove("active");
+            payOfferPopup.classList.add("active");
+        })
+
+
+        ///////////////////////////////////////////////// Successfulg pay popup open afetr confirmation
+        const buttonEndPayConfirmation = document.querySelector(".offer-pay-button");
+        const successfulPayPopup = document.querySelector(".successful-pay-popup");
+        buttonEndPayConfirmation.addEventListener("click", function(){
+            confirmationOfferPopup.classList.remove("active");
+            successfulPayPopup.classList.add("active");
+        })
+        //////////////////////////////////////////////////successful pay popup 
+        const buttonEndPayOffer = document.querySelector(".pay-offer-button");
+        buttonEndPayOffer.addEventListener("click", function(){
+            payOfferPopup.classList.remove("active");
+            successfulPayPopup.classList.add("active");
+        })
+        ////////////////////////////////////////////////// Wrong pay popup close
+        const buttonCloseSuccessfulPay = document.querySelector(".successful-pay-button");
+        buttonCloseSuccessfulPay.addEventListener("click", function(){
+            successfulPayPopup.classList.remove("active");
             pageActive();
         })
 
+
+        ///////////////////////////////////////////////// Wrong pay popup open afetr confirmation
+        const wrongPayPopup = document.querySelector(".wrong-pay-popup");
+        buttonEndPayConfirmation.addEventListener("click", function(){
+            confirmationOfferPopup.classList.remove("active");
+            wrongPayPopup.classList.add("active");
+        })
+        ////////////////////////////////////////////////// Wrong pay popup 
+        buttonEndPayOffer.addEventListener("click", function(){
+            payOfferPopup.classList.remove("active");
+            wrongPayPopup.classList.add("active");
+        })
+        ////////////////////////////////////////////////// Wrong pay popup close
+        const buttonCloseWrongPay = document.querySelector(".wrong-pay-button");
+        buttonCloseWrongPay.addEventListener("click", function(){
+            wrongPayPopup.classList.remove("active");
+            pageActive();
+        })
+
+
+
+
         ///////////////////////////////////////////// checkbox agree with rights
         const checkboxRights = document.querySelector(".checkbox-wrapper");
-        console.log(checkboxRights);
         checkboxRights.addEventListener("click", function(){
             if(checkboxRights.classList.contains("active")){
                 checkboxRights.classList.remove("active");
@@ -188,7 +249,6 @@ $(document).ready(function(){
         const selectSocialSubmenu = document.querySelector(".mobile-list-of-social");
         const selectSocialSubmenuItem = Array.from(document.getElementsByClassName("item-mobile-list-of-social"));
         selectSocial.addEventListener("click", function(){
-            console.log("SUbmenu");
             if(selectSocialSubmenu.classList.contains("active")){
                 selectSocialSubmenu.classList.remove("active");
             }
@@ -207,7 +267,6 @@ $(document).ready(function(){
          const selectServicesSubmenu = document.querySelector(".mobile-list-of-services");
          const selectServicesSubmenuItem = Array.from(document.getElementsByClassName("item-mobile-list-of-services"));
          selectServices.addEventListener("click", function(){
-             console.log("SUbmenu");
              if(selectServicesSubmenu.classList.contains("active")){
                  selectServicesSubmenu.classList.remove("active");
              }
@@ -228,14 +287,11 @@ $(document).ready(function(){
          const selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
          let valueTariff = 0;
          selectTariff.addEventListener("click", function(){
-             console.log("SUbmenu");
              if(selectTariffSubmenu.classList.contains("active")){
                  selectTariffSubmenu.classList.remove("active");
-                 console.log("SUbmenu1");
              }
              else{
                  selectTariffSubmenu.classList.add("active");
-                 console.log("SUbmenu2");
              }
          })
          selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
@@ -261,9 +317,14 @@ $(document).ready(function(){
              selectTariffContentPopup.innerHTML = this.innerHTML;
              selectTariffContentPopup.dataset.value = this.dataset.value;
              valueTariff = +this.dataset.value;
+             totalSummForSubPopup.value = (+countOfInputSubPopup.value * +valueTariff).toFixed(2);
+             console.log(valueTariff);
          })})
+         //////////////////////////////////////
 
-        ///////////////////////////form input calculate tariff
+
+
+        ///////////////////////////form input calculate tariff main page
         const countOfInputSub = document.querySelector(".count-value input");
         const inputSliderForSub =  document.querySelector(".js-input-for-count-sub");
         const totalSummForSub = document.querySelector(".total-value input");
@@ -271,7 +332,6 @@ $(document).ready(function(){
             let instance;
             let min = 500;
             let max = 10000;
-            console.log(countOfInputSub.value);
             //let valueTariff = selectTariff.options[selectTariff.selectedIndex].value;;
             $(".js-input-for-count-sub").ionRangeSlider({
                 min: min,
@@ -287,7 +347,7 @@ $(document).ready(function(){
             });
             let countFromInput = +countOfInputSub.value;
             instance = $(".js-input-for-count-sub").data("ionRangeSlider");
-            countOfInputSub.addEventListener('change', function() {
+            countOfInputSub.addEventListener('keypress', function() {
                 countFromInput = countOfInputSub.value;
                 if (min<=countFromInput && countFromInput<=max){
                     countOfInputSub.value = countFromInput;
@@ -317,8 +377,58 @@ $(document).ready(function(){
                 console.log(valueTariff + " " + countFromInput);
             })*/
         }
-        /////////////////////////////////////
+        ///////////////////////////////////// form input calculate tariff popup
+        const countOfInputSubPopup = document.querySelector(".count-value-input-wrapper-popup input");
+        const minusCountOfInputSubPopup = document.querySelector(".count-value-input-popup-minus");
+        const plusCountOfInputSubPopup = document.querySelector(".count-value-input-popup-plus");
+        const totalSummForSubPopup = document.querySelector(".total-value-popup input");
+        if(countOfInputSubPopup && selectTariffPopup && totalSummForSubPopup){
+            let min = 500;
+            let max = 10000;
+            console.log(countOfInputSubPopup.value);
+            //let valueTariff = selectTariff.options[selectTariff.selectedIndex].value;;
+            let countFromInput = +countOfInputSubPopup.value;
+            countOfInputSubPopup.addEventListener('change', function() {
+                console.log("CHANGE");
+                countFromInput = countOfInputSubPopup.value;
+                if (min<=countFromInput && countFromInput<=max){
+                    countOfInputSubPopup.value = countFromInput;
+                    totalSummForSubPopup.value = (+countOfInputSubPopup.value * +valueTariff).toFixed(2);
+                }
+                else{
+                    if (countFromInput < min) {
+                    countFromInput = min;
+                    countOfInputSubPopup.value = countFromInput;
+                    totalSummForSubPopup.value = (+countOfInputSubPopup.value * +valueTariff).toFixed(2);
+                } else if (countFromInput > max) {
+                    countFromInput = max;
+                    countOfInputSubPopup.value = countFromInput;
+                    totalSummForSubPopup.value = (+countOfInputSubPopup.value * +valueTariff).toFixed(2);
+                }
+            }
+            });
+            minusCountOfInputSubPopup.addEventListener("click", function(){
+                if(countOfInputSubPopup.value<=100){
+                    countOfInputSubPopup.value = 100;
+                }
+                else{
+                    countOfInputSubPopup.value = +countOfInputSubPopup.value - 1;
+                }
+                totalSummForSubPopup.value = (+countOfInputSubPopup.value * +valueTariff).toFixed(2);
+            })
+            plusCountOfInputSubPopup.addEventListener("click", function(){
+                if(countOfInputSubPopup.value>=50000){
+                    countOfInputSubPopup.value=50000
+                }
+                else{
+                    countOfInputSubPopup.value = +countOfInputSubPopup.value + 1;  
+                }
+                totalSummForSubPopup.value = (+countOfInputSubPopup.value * +valueTariff).toFixed(2);
+            })
+            
+        }
 
+        ///////////////////////////////////// 
 
         ////////////////////accordeon
         const accordeonQuestion = Array.from(document.getElementsByClassName("question"));
