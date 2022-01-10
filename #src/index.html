@@ -242,7 +242,7 @@
                         <div class="title">Выберите тип услуги</div>
                         <ul class="list-of-services">
                             <li class="item-service">
-                                <svg class="icon-service">
+                                <svg class="icon-service" id="icon-service1">
                                     <use xlink:href="img/icons/icons.svg#service1"></use>
                                 </svg>
                                 <span>Подписчики</span>
@@ -261,7 +261,7 @@
                                 </div>
                             </li>
                             <li class="item-service">
-                                <svg class="icon-service">
+                                <svg class="icon-service" id="icon-service2">
                                     <use xlink:href="img/icons/icons.svg#service2"></use>
                                 </svg>
                                 <span>Лайки</span>
@@ -280,7 +280,7 @@
                                 </div>
                             </li>
                             <li class="item-service">
-                                <svg class="icon-service">
+                                <svg class="icon-service" id="icon-service3">
                                     <use xlink:href="img/icons/icons.svg#service3"></use>
                                 </svg>
                                 <span>Трансляции</span>
@@ -1220,40 +1220,42 @@
                             </div>
                             <div class="offer-details-pay-choice">
                                 <div class="pay-choice-title">Платежный метод</div>
-                                <div class="pay-choice-wrapper">
-                                    <div class="pay-choice-img">
-                                        <img src="img/bankcard.png" alt="alt">
+                                <div class="pay-variable-choice-wrapper">
+                                    <div class="pay-choice-wrapper">
+                                        <div class="pay-choice-img">
+                                            <img src="img/bankcard.png" alt="alt">
+                                        </div>
+                                        <div class="pay-choice-name-and-commission">
+                                            <div class="pay-choice-name">Банковская карта</div>
+                                            <div class="pay-choise-commission">Комиссия 0%</div>
+                                        </div>
                                     </div>
-                                    <div class="pay-choice-name-and-commission">
-                                        <div class="pay-choice-name">Банковская карта</div>
-                                        <div class="pay-choise-commission">Комиссия 0%</div>
+                                    <div class="pay-choice-wrapper">
+                                        <div class="pay-choice-img">
+                                            <img src="img/umoney.png" alt="alt">
+                                        </div>
+                                        <div class="pay-choice-name-and-commission">
+                                            <div class="pay-choice-name">ЮMoney</div>
+                                            <div class="pay-choise-commission">Комиссия 0%</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="pay-choice-wrapper">
-                                    <div class="pay-choice-img">
-                                        <img src="img/umoney.png" alt="alt">
+                                    <div class="pay-choice-wrapper">
+                                        <div class="pay-choice-img">
+                                            <img src="img/qiwi.png" alt="alt">
+                                        </div>
+                                        <div class="pay-choice-name-and-commission">
+                                            <div class="pay-choice-name">QIWI</div>
+                                            <div class="pay-choise-commission">Комиссия 0%</div>
+                                        </div>
                                     </div>
-                                    <div class="pay-choice-name-and-commission">
-                                        <div class="pay-choice-name">ЮMoney</div>
-                                        <div class="pay-choise-commission">Комиссия 0%</div>
-                                    </div>
-                                </div>
-                                <div class="pay-choice-wrapper">
-                                    <div class="pay-choice-img">
-                                        <img src="img/qiwi.png" alt="alt">
-                                    </div>
-                                    <div class="pay-choice-name-and-commission">
-                                        <div class="pay-choice-name">QIWI</div>
-                                        <div class="pay-choise-commission">Комиссия 0%</div>
-                                    </div>
-                                </div>
-                                <div class="pay-choice-wrapper">
-                                    <div class="pay-choice-img">
-                                        <img src="img/webmoney.png" alt="alt">
-                                    </div>
-                                    <div class="pay-choice-name-and-commission">
-                                        <div class="pay-choice-name">WebMoney</div>
-                                        <div class="pay-choise-commission">Комиссия 0%</div>
+                                    <div class="pay-choice-wrapper">
+                                        <div class="pay-choice-img">
+                                            <img src="img/webmoney.png" alt="alt">
+                                        </div>
+                                        <div class="pay-choice-name-and-commission">
+                                            <div class="pay-choice-name">WebMoney</div>
+                                            <div class="pay-choise-commission">Комиссия 0%</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1334,8 +1336,8 @@
                                 </div>
                             </div>
                             <div class="input-count-and-total-help">
-                                <svg class="icon-profile">
-                                    <use xlink:href="img/icons/icons.svg#profile"></use>
+                                <svg class="icon-info">
+                                    <use xlink:href="img/icons/icons.svg#info"></use>
                                 </svg>
                                 <span class="help-text">
                                     Лимит: от 100 до 50000
@@ -1413,6 +1415,9 @@
             </div>
             <div class="pay-offer-popup">
                 <button class="pay-offer-edit-button" type="button">Изменить заказ</button>
+                <div class="pay-offer-edit-button-adapt">
+                    <div class="pay-offer-edit-button-adapt-line"></div>
+                </div>
                 <div class="pay-offer-popup-title">Быстрая оплата</div>
                 <div class="offer-details-pay-choice">
                     <div class="pay-choice-wrapper">

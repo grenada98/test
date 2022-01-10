@@ -48,34 +48,37 @@ $(document).ready(function(){
             slidesToShow: 10,
             responsive: [
                 {
-                    breakpoint: 740,
+                    breakpoint: 1100,
                     settings: {
-                        slidesToShow: 5
+                        slidesToShow: 9
                     }
                 },
                 {
-                    breakpoint: 565,
+                    breakpoint: 993,
                     settings: {
-                        slidesToShow: 4
+                        slidesToShow: 8
                     }
                 },
                 {
-                    breakpoint: 459,
+                    breakpoint: 886,
                     settings: {
-                        slidesToShow: 3
+                        slidesToShow: 7
                     }
                 }
             ]
         })
         const mainDisabled = document.querySelector(".main-disabled");
         const htmlDisabled = document.querySelector("html");
+        const toTop = document.querySelector(".to-top");
         function pageDisable(){
             mainDisabled.classList.add("active");
             htmlDisabled.classList.add("disabled");
+            toTop.classList.add("disabled");
         }
         function pageActive(){
             mainDisabled.classList.remove("active");
             htmlDisabled.classList.remove("disabled");
+            toTop.classList.remove("disabled");
         }
         ////////////////////////////////////// enter-popup
         const buttonEnterProfile = document.querySelector(".link-button.small")
@@ -166,6 +169,11 @@ $(document).ready(function(){
             payOfferPopup.classList.remove("active");
             editOfferPopup.classList.add("active");
         })
+        const buttonAdaptEditOfferPay = document.querySelector(".pay-offer-edit-button-adapt");
+        buttonAdaptEditOfferPay.addEventListener("click", function(){
+            payOfferPopup.classList.remove("active");
+            editOfferPopup.classList.add("active");
+        })
 
 
         //////////////////////////////////////////////////// pay-offer popup
@@ -197,8 +205,8 @@ $(document).ready(function(){
             pageActive();
         })
 
-
-        ///////////////////////////////////////////////// Wrong pay popup open afetr confirmation
+/*
+        ////////////////////////////////////////////////// Wrong pay popup open afetr confirmation
         const wrongPayPopup = document.querySelector(".wrong-pay-popup");
         buttonEndPayConfirmation.addEventListener("click", function(){
             confirmationOfferPopup.classList.remove("active");
@@ -215,7 +223,7 @@ $(document).ready(function(){
             wrongPayPopup.classList.remove("active");
             pageActive();
         })
-
+*/
 
 
 
@@ -448,8 +456,8 @@ $(document).ready(function(){
 
         /////////////////////////////////////// scrollbar
         const listFeedback = document.querySelector('.list-of-feedback');
-        new SimpleBar(listFeedback, {
-            autoHide: true
+        const simpleBarForListFeedback = new SimpleBar(listFeedback, {
+            autoHide: false
         });
 
 
@@ -470,6 +478,7 @@ $(document).ready(function(){
                 if(feedBackComments.length==countLoadComments){
                     buttonLoadMore.classList.add("disabled");
                 }
+                simpleBarForListFeedback.recalculate();
         }})
 
 
