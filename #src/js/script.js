@@ -349,27 +349,32 @@ document.addEventListener('DOMContentLoaded', function(){
          selectServicesSubmenuItemMobile.forEach(function(el){ el.addEventListener("click", function(){
              selectServicesContentMobile.innerHTML = this.innerHTML;
          })})
-         /////////////////////////////////////////////////////
 
+
+
+
+         ///////////////////////////////////////////////////// select left service and put in select right
          const listOfServices = document.getElementsByClassName("item-service");
          listOfServices.forEach(function(el){el.addEventListener("click", function(){
-             console.log(this.dataset.name);
+             if(document.querySelector(".item-service.active")){
+                document.querySelector(".item-service.active").classList.remove("active");
+             }
             let itemSubmenuListOfServices = document.querySelectorAll(`.service-submenu-item[data-name=${this.dataset.name}]`);
-            selectTariffSubmenu.innerHTML = "";
-            console.log(itemSubmenuListOfServices.length);
-            for(let i=0; i<itemSubmenuListOfServices.length; i++){
-                let variableForSubMenuItem = document.createElement("div");
-                variableForSubMenuItem.classList.add("item-list-of-tariff");
-                console.log(itemSubmenuListOfServices[i]);
-                variableForSubMenuItem.setAttribute("data-value", itemSubmenuListOfServices[i].dataset.value);
-                variableForSubMenuItem.innerHTML = itemSubmenuListOfServices[i].innerHTML;
-                selectTariffSubmenu.appendChild(variableForSubMenuItem);
-                console.log(selectTariffSubmenu);
-                //selectTariffSubmenuItem[i].innerHTML = itemSubmenuListOfServices[i].innerHTML;
+            if(itemSubmenuListOfServices.length!=0){
+                this.classList.add("active");
+                selectTariffSubmenu.innerHTML = "";
+                for(let i=0; i<itemSubmenuListOfServices.length; i++){
+                    let variableForSubMenuItem = document.createElement("div");
+                    variableForSubMenuItem.classList.add("item-list-of-tariff");
+                    variableForSubMenuItem.setAttribute("data-value", itemSubmenuListOfServices[i].dataset.value);
+                    variableForSubMenuItem.innerHTML = itemSubmenuListOfServices[i].innerHTML;
+                    selectTariffSubmenu.appendChild(variableForSubMenuItem);
+                }
+                selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
+                selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", selectServiceTariffSubmenu)});
             }
-            selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
-            selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", selectServiceTariffSubmenu)})
          })})
+         ///////////////////////////////////////////////////////////////////
 
          ////////////////////////////////////////////////// select-tariff
          const selectTariff = document.querySelector(".list-of-tariff-wrapper");

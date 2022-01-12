@@ -1071,6 +1071,10 @@ nav {
   background-color: #EBF0F8;
 }
 
+.item-service.active {
+  background-color: #EBF0F8;
+}
+
 .item-service-submenu-wrapper {
   position: absolute;
   left: 100%;
@@ -1078,10 +1082,6 @@ nav {
   width: 100%;
   display: none;
   z-index: 3;
-}
-
-.item-service:hover .item-service-submenu-wrapper {
-  display: block;
 }
 
 .item-service-submenu {
