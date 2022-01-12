@@ -81,11 +81,14 @@ document.addEventListener('DOMContentLoaded', function(){
             htmlDisabled.classList.remove("disabled");
             toTop.classList.remove("disabled");
         }
-        /*mainDisabled.addEventListener("click", function(event){
-            pageActive();
-            console.log(mainDisabled.querySelectorAll(".active"));
-            mainDisabled.querySelector(".active").classList.remove("active");
-        })*/
+        mainDisabled.addEventListener("click", function(event){
+            if(event.target==this){
+                pageActive();
+                mainDisabled.querySelector(".active").classList.remove("active");
+            }
+            else{
+            }
+        })
         ////////////////////////////////////// enter-popup
         const buttonEnterProfile = document.querySelector(".link-button.small")
         const enterProfilePopup = document.querySelector(".enter-popup");
