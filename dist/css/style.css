@@ -187,6 +187,10 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .icon-profile {
@@ -297,6 +301,123 @@ nav {
 .link-button:hover {
   background-color: #FFFFFF;
   color: #3990F1;
+}
+
+.user-menu {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-menu.active .balance {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 33px;
+  cursor: pointer;
+  position: relative;
+}
+
+.balance-title,
+.balance-value {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  color: white;
+  margin-right: 5px;
+}
+
+.balance-value {
+  font-weight: 400;
+}
+
+.up-balance {
+  width: 33px;
+  height: 33px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  margin-left: 10px;
+  position: relative;
+}
+
+.up-balance::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 11px;
+  height: 1.5px;
+  background-color: #3990F1;
+}
+
+.up-balance::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+      -ms-transform: translate(-50%, -50%) rotate(90deg);
+          transform: translate(-50%, -50%) rotate(90deg);
+  width: 11px;
+  height: 1.5px;
+  background-color: #3990F1;
+}
+
+.up-balance-submenu-wrapper {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 20px;
+  width: 100%;
+  z-index: 999;
+}
+
+.up-balance-submenu-wrapper.active {
+  display: block;
+}
+
+.up-balance-submenu {
+  display: block;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #545454;
+  background-color: #FFFFFF;
+  width: 100%;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.up-balance-submenu:hover {
+  background-color: #F8FAFD;
+}
+
+.user-email-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.user-email {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #FFFFFF;
+  margin-right: 10px;
 }
 
 .section-1 {
@@ -799,12 +920,27 @@ nav {
   width: 100%;
   background-color: #F8FAFD;
   position: relative;
+  cursor: pointer;
+  padding: 15px 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-transition: 0.4s;
   -o-transition: 0.4s;
   transition: 0.4s;
 }
 
 .item-social.slick-slide:hover {
+  background-color: #EBF0F8;
+}
+
+.item-social.slick-slide.active {
   background-color: #EBF0F8;
 }
 
@@ -872,20 +1008,6 @@ nav {
   height: 50%;
   width: 1px;
   background-color: #EBEFF4;
-}
-
-.item-social a {
-  padding: 15px 35px;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .wrapper-img {
@@ -2681,6 +2803,14 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
+}
+
+.pay-choice-wrapper.active .pay-choice-name {
+  color: #3990F1;
+}
+
+.pay-choice-wrapper.active .pay-choise-commission {
+  color: #78A1CF;
 }
 
 .pay-choice-img {

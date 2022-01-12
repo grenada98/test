@@ -150,6 +150,10 @@ nav{
     margin-right: 20px;
     display: flex;
     align-items: center;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 .icon-profile{
     width: 28px;
@@ -237,6 +241,95 @@ nav{
 .link-button:hover{
     background-color: #FFFFFF;
     color: #3990F1;
+}
+.user-menu{
+    display: none;
+    align-items: center;
+}
+.user-menu.active
+.balance{
+    display: flex;
+    align-items: center;
+    margin-right: 33px;
+    cursor: pointer;
+    position: relative;
+}
+.balance-title,
+.balance-value{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    color: white;
+    margin-right: 5px;
+}
+.balance-value{
+    font-weight: 400;
+}
+.up-balance{
+    width: 33px;
+    height: 33px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    margin-left: 10px;
+    position: relative;
+}
+.up-balance::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11px;
+    height: 1.5px;
+    background-color: #3990F1;
+}
+.up-balance::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    width: 11px;
+    height: 1.5px;
+    background-color: #3990F1;
+}
+.up-balance-submenu-wrapper{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-top: 20px;
+    width: 100%;
+    z-index: 999;
+}
+.up-balance-submenu-wrapper.active{
+    display: block;
+}
+.up-balance-submenu{
+    display: block;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #545454;
+    background-color: #FFFFFF;
+    width: 100%;
+    transition: 0.4s;
+}
+.up-balance-submenu:hover{
+    background-color: #F8FAFD;
+}
+.user-email-profile{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.user-email{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin-right: 10px;
 }
 
 
@@ -544,9 +637,17 @@ nav{
     width: 100%;
     background-color:  #F8FAFD;
     position: relative;
+    cursor: pointer;
+    padding: 15px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: 0.4s;
 }
 .item-social.slick-slide:hover{
+    background-color: #EBF0F8;
+}
+.item-social.slick-slide.active{
     background-color: #EBF0F8;
 }
 .list-of-social .slick-prev{
@@ -605,14 +706,6 @@ nav{
     height: 50%;
     width: 1px;
     background-color: #EBEFF4;
-}
-
-.item-social a{
-    padding: 15px 35px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .wrapper-img{
     width: 38px;
@@ -1964,6 +2057,12 @@ footer{
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+.pay-choice-wrapper.active .pay-choice-name{
+    color: #3990F1;
+}
+.pay-choice-wrapper.active .pay-choise-commission{
+    color: #78A1CF;
 }
 .pay-choice-img{
     width: 43px;
