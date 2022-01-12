@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener('DOMContentLoaded', function(){
 
     function testWebP(callback) {
 
@@ -67,6 +67,7 @@ $(document).ready(function(){
                 }
             ]
         })
+
         const mainDisabled = document.querySelector(".main-disabled");
         const htmlDisabled = document.querySelector("html");
         const toTop = document.querySelector(".to-top");
@@ -80,11 +81,15 @@ $(document).ready(function(){
             htmlDisabled.classList.remove("disabled");
             toTop.classList.remove("disabled");
         }
+        /*mainDisabled.addEventListener("click", function(event){
+            pageActive();
+            console.log(mainDisabled.querySelectorAll(".active"));
+            mainDisabled.querySelector(".active").classList.remove("active");
+        })*/
         ////////////////////////////////////// enter-popup
         const buttonEnterProfile = document.querySelector(".link-button.small")
         const enterProfilePopup = document.querySelector(".enter-popup");
         buttonEnterProfile.addEventListener("click", function(){
-            console.log("ENTER");
             enterProfilePopup.classList.add("active");
             pageDisable();
         })
@@ -149,13 +154,45 @@ $(document).ready(function(){
         //////////////////////////////////////////////////////////// offer continue
         const buttonContinueOffer = document.querySelector(".services-order-continue-button");
         const confirmationOfferPopup = document.querySelector(".confiramtion-offer-popup");
-        buttonContinueOffer.addEventListener("click", function(){
+        const linkSocialForOffer = document.querySelector(".input-for-link");
+        const selectedValueOffer = document.querySelectorAll(".details-offer-choise");
+        let nameTariff = null; //for name of tariff
+        let valueTariff = null; //for value of tariff
+        let linkSocialValue = null; //for link
+        let totalCountOfSub = null;  //for count of sub
+        let totalCountForPay = null; // for total count of pay
+        function confirmOfferMain(){
             confirmationOfferPopup.classList.add("active");
             pageDisable();
-            console.log(valueTariff);
             selectTariffContentPopup.innerHTML = document.querySelector(`.item-list-of-tariff-popup[data-value="${valueTariff}"]`).innerHTML;
             selectTariffContentPopup.dataset.value = valueTariff;
-        })
+            for(let i=0; i<selectedValueOffer.length; i++){
+                console.log(selectedValueOffer[i]);
+                if(selectedValueOffer[i].getAttribute("data-name")=="tariff"){
+                    selectedValueOffer[i].textContent = nameTariff;
+                }
+                if(selectedValueOffer[i].getAttribute("data-name")=="count"){
+                    selectedValueOffer[i].textContent = totalCountOfSub;
+                }
+                if(selectedValueOffer[i].getAttribute("data-name")=="price"){
+                    selectedValueOffer[i].textContent = totalCountForPay;
+                }
+                if(selectedValueOffer[i].getAttribute("data-name")=="link"){
+                    selectedValueOffer[i].textContent = linkSocialValue;
+                }
+            }
+            buttonEndPayConfirmation.textContent = `Оплатить ${totalCountForPay}₽`;
+        }
+        function getActiveOfferButton(){
+            if(nameTariff!=null && valueTariff!=null && linkSocialValue!=null && linkSocialValue!="" && totalCountOfSub!=null && totalCountForPay!=null){
+                buttonContinueOffer.addEventListener("click", confirmOfferMain);
+                buttonContinueOffer.classList.remove("disabled");
+            }
+            else{
+                buttonContinueOffer.removeEventListener("click", confirmOfferMain);
+                buttonContinueOffer.classList.add("disabled");
+            }
+        }
         ////////////////////////////////////////////////////////// offer edit -> open popup edit offer
         const buttonEditOffer = document.querySelector(".icon-editoffer");
         const editOfferPopup = document.querySelector(".edit-offer-popup");
@@ -188,9 +225,11 @@ $(document).ready(function(){
         ///////////////////////////////////////////////// Successfulg pay popup open afetr confirmation
         const buttonEndPayConfirmation = document.querySelector(".offer-pay-button");
         const successfulPayPopup = document.querySelector(".successful-pay-popup");
+        const successfulPayPopupNameTariiff = document.querySelector(".successful-pay-title span");
         buttonEndPayConfirmation.addEventListener("click", function(){
             confirmationOfferPopup.classList.remove("active");
             successfulPayPopup.classList.add("active");
+            successfulPayPopupNameTariiff.textContent = nameTariff;
         })
         //////////////////////////////////////////////////successful pay popup 
         const buttonEndPayOffer = document.querySelector(".pay-offer-button");
@@ -293,7 +332,6 @@ $(document).ready(function(){
          const selectTariffContent = document.querySelector(".list-of-tariff-content");
          const selectTariffSubmenu = document.querySelector(".list-of-tariff");
          const selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
-         let valueTariff = 0;
          selectTariff.addEventListener("click", function(){
              if(selectTariffSubmenu.classList.contains("active")){
                  selectTariffSubmenu.classList.remove("active");
@@ -306,6 +344,8 @@ $(document).ready(function(){
              selectTariffContent.innerHTML = this.innerHTML;
              selectTariffContent.dataset.value = this.dataset.value;
              valueTariff = +this.dataset.value;
+             nameTariff = selectTariffContent.textContent;
+             getActiveOfferButton();
          })})
 
         ////////////////////////////////////////////////// select-tariff edit popup
@@ -326,12 +366,16 @@ $(document).ready(function(){
              selectTariffContentPopup.dataset.value = this.dataset.value;
              valueTariff = +this.dataset.value;
              totalSummForSubPopup.value = (+countOfInputSubPopup.value * +valueTariff).toFixed(2);
-             console.log(valueTariff);
          })})
          //////////////////////////////////////
 
 
-
+        /////////////////////////////////// input link for service site
+        const inputLinkForService = document.querySelector(".input-for-link");
+        inputLinkForService.addEventListener("change", function(){
+            linkSocialValue = linkSocialForOffer.value;
+            getActiveOfferButton();
+        })
         ///////////////////////////form input calculate tariff main page
         const countOfInputSub = document.querySelector(".count-value input");
         const inputSliderForSub =  document.querySelector(".js-input-for-count-sub");
@@ -351,6 +395,9 @@ $(document).ready(function(){
                 onChange: function (data) {
                     countOfInputSub.value = data.from;
                     totalSummForSub.value = (+countOfInputSub.value * +valueTariff).toFixed(2);
+                    totalCountOfSub = countOfInputSub.value;
+                    totalCountForPay = totalSummForSub.value;
+                    getActiveOfferButton();
                 }
             });
             let countFromInput = +countOfInputSub.value;
@@ -363,20 +410,25 @@ $(document).ready(function(){
                     instance.update({
                         from: countFromInput
                     });
+                    getActiveOfferButton();
                 }
                 else{
                     if (countFromInput < min) {
                     countFromInput = min;
                     countOfInputSub.value = countFromInput;
                     totalSummForSub.value = (+countOfInputSub.value * +valueTariff).toFixed(2);
+                    getActiveOfferButton();
                 } else if (countFromInput > max) {
                     countFromInput = max;
                     countOfInputSub.value = countFromInput;
                     totalSummForSub.value = (+countOfInputSub.value * +valueTariff).toFixed(2);
+                    getActiveOfferButton();
                 }
                 instance.update({
                     from: countFromInput
                 });
+                totalCountOfSub = countOfInputSub.value;
+                totalCountForPay = totalSummForSub.value;
             }
             });
             /*selectTariff.addEventListener('click', function(){
@@ -397,7 +449,6 @@ $(document).ready(function(){
             //let valueTariff = selectTariff.options[selectTariff.selectedIndex].value;;
             let countFromInput = +countOfInputSubPopup.value;
             countOfInputSubPopup.addEventListener('change', function() {
-                console.log("CHANGE");
                 countFromInput = countOfInputSubPopup.value;
                 if (min<=countFromInput && countFromInput<=max){
                     countOfInputSubPopup.value = countFromInput;
@@ -480,15 +531,4 @@ $(document).ready(function(){
                 }
                 simpleBarForListFeedback.recalculate();
         }})
-
-
-
-        document.addEventListener("click", function(e){
-            if(!e.target.classList.contains("mobile-list-of-social-content")){
-                selectSocialSubmenu.classList.remove("active");
-            }
-            if(!e.target.classList.contains("mobile-list-of-services-content")){
-                selectServicesSubmenu.classList.remove("active");
-            }
-        })
 })

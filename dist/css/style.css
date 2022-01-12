@@ -721,6 +721,9 @@ nav {
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .item-list-of-tariff,
@@ -728,6 +731,7 @@ nav {
   background-color: #FFFFFF;
 }
 
+.item-list-of-tariff:hover,
 .item-list-of-tariff-popup:hover {
   background-color: #F8FAFD;
 }
@@ -1440,6 +1444,15 @@ nav {
   color: #3990F1;
 }
 
+.services-order-continue-button.disabled {
+  opacity: 0.5;
+}
+
+.services-order-continue-button.disabled:hover {
+  background-color: #3990F1;
+  color: white;
+}
+
 .no-webp .section-3-wrapper {
   background-image: url("../img/substrate2.png"); }
 
@@ -2005,9 +2018,18 @@ footer {
 .item-submenu {
   position: relative;
   width: 100%;
+  text-align: center;
 }
 
-.item-submenu::before {
+.item-submenu a {
+  font-weight: 400;
+  line-height: 37px;
+  color: #FFFFFF;
+  position: relative;
+  font-size: calc(12px + 6 * ((100vw - 320px) / 1600));
+}
+
+.item-submenu a::before {
   content: "";
   position: absolute;
   left: 0;
@@ -2020,17 +2042,8 @@ footer {
   transition: 0.4s;
 }
 
-.item-submenu:hover::before {
+.item-submenu a:hover::before {
   width: 100%;
-}
-
-.item-submenu a {
-  display: block;
-  width: 100%;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 37px;
-  color: #FFFFFF;
 }
 
 .list-submenu-pay {
@@ -2666,6 +2679,7 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
 }
 
 .pay-choice-img {
@@ -3404,9 +3418,8 @@ footer {
   .footer-menu {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
   }
 
   .footer-about-site {

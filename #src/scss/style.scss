@@ -483,11 +483,13 @@ nav{
     display: flex;
     align-items: center;
     cursor: pointer;
+    transition: 0.4s;
 }
 .item-list-of-tariff,
 .item-list-of-tariff-popup{
     background-color: #FFFFFF;
 }
+.item-list-of-tariff:hover,
 .item-list-of-tariff-popup:hover{
     background-color: #F8FAFD;
 }
@@ -1016,6 +1018,13 @@ nav{
     background-color: white;
     color: #3990F1;
 }
+.services-order-continue-button.disabled{
+    opacity: 0.5;
+}
+.services-order-continue-button.disabled:hover{
+    background-color: #3990F1;
+    color: white;
+}
 
 
 
@@ -1421,8 +1430,16 @@ footer{
 .item-submenu{
     position: relative;
     width: 100%;
+    text-align: center;
 }
-.item-submenu::before{
+.item-submenu a{
+    font-weight: 400;
+    line-height: 37px;
+    color: #FFFFFF;
+    position: relative;
+    @include adaptiv-font(18, 12);
+}
+.item-submenu a::before{
     content: "";
     position: absolute;
     left: 0;
@@ -1432,16 +1449,8 @@ footer{
     background-color: #FFFFFF;
     transition: 0.4s;
 }
-.item-submenu:hover::before{
+.item-submenu a:hover::before{
     width: 100%;
-}
-.item-submenu a{
-    display: block;
-    width: 100%;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 37px;
-    color: #FFFFFF;
 }
 .list-submenu-pay{
     list-style: none;
@@ -1953,6 +1962,7 @@ footer{
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .pay-choice-img{
     width: 43px;
@@ -2449,7 +2459,7 @@ footer{
     }
     .footer-menu{
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-around;
     }
     .footer-about-site{
         display: flex;
