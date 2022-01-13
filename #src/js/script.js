@@ -86,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 pageActive();
                 mainDisabled.querySelector(".active").classList.remove("active");
             }
-            else{
+        })
+        document.addEventListener("click", function(e){
+            if(e.target!=selectTariffContent){
+                selectTariffSubmenu.classList.remove("active");
             }
         })
         ////////////////////////////////////// enter-popup
@@ -370,6 +373,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     variableForSubMenuItem.innerHTML = itemSubmenuListOfServices[i].innerHTML;
                     selectTariffSubmenu.appendChild(variableForSubMenuItem);
                 }
+                selectTariffContent.textContent = "Выберите тариф";
                 selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
                 selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", selectServiceTariffSubmenu)});
             }
