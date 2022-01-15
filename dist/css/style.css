@@ -847,6 +847,16 @@ nav {
   transition: 0.4s;
 }
 
+.item-mobile-list-of-services {
+  display: none;
+}
+
+.item-mobile-list-of-services.selected {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .item-list-of-tariff,
 .item-list-of-tariff-popup {
   background-color: #FFFFFF;
@@ -1036,6 +1046,13 @@ nav {
   border-radius: 10px;
 }
 
+.services-window.service-page {
+  width: 100%;
+  max-width: 100%;
+  padding-bottom: 0px;
+  background-color: #FFFFFF;
+}
+
 .services-window .title {
   color: #545454;
   font-size: 22px;
@@ -1047,6 +1064,15 @@ nav {
 .list-of-services {
   list-style: none;
   padding-left: 0;
+}
+
+.list-of-services.service-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0;
 }
 
 .item-service,
@@ -1073,6 +1099,48 @@ nav {
 
 .item-service.active {
   background-color: #EBF0F8;
+}
+
+.item-service-service-page {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 226px;
+  width: 19%;
+  min-width: 205px;
+  padding: 19px 37px;
+  border-radius: 10px;
+  background-color: #F8FAFD;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.item-service-service-page.selected {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.item-service-service-page.active {
+  background-color: #c9cacc;
+}
+
+.item-service-service-page:hover,
+.item-service-service-page.active {
+  background-color: #EBF0F8;
+}
+
+.item-service-service-page .icon-service {
+  margin-right: 10px;
 }
 
 .item-service-submenu-wrapper {
@@ -2434,7 +2502,9 @@ footer {
 .pay-offer-button,
 .edit-services-order-continue-button,
 .wrong-pay-button,
-.successful-pay-button {
+.successful-pay-button,
+.button-tariff-details,
+.button-tariff-offer {
   margin-top: 20px;
   padding: 12px 55px 13px 56px;
   border: 1px solid #3990F1;
@@ -2458,7 +2528,9 @@ footer {
 .pay-offer-button:hover,
 .edit-services-order-continue-button:hover,
 .wrong-pay-button:hover,
-.successful-pay-button:hover {
+.successful-pay-button:hover,
+.button-tariff-details:hover,
+.button-tariff-offer:hover {
   background-color: #FFFFFF;
   color: #3990F1;
 }
@@ -3235,6 +3307,295 @@ footer {
   margin-bottom: 9px;
 }
 
+.image-mobile {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 135%;
+  -webkit-transform: translateY(-30%);
+      -ms-transform: translateY(-30%);
+          transform: translateY(-30%);
+}
+
+.image-mobile img {
+  width: 100%;
+}
+
+.services-tariffs {
+  width: 100%;
+  max-height: 920px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 60px;
+  background-color: #FFFFFF;
+  padding: 15px 0;
+  border-radius: 10px;
+}
+
+.item-tariff-of-service {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 14px 20px 21px 24px;
+  background-color: #F8FAFD;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.item-tariff-title-and-description {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.item-tariff-title-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+  margin-right: 15px;
+}
+
+.social-icon-for-tariff {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 20px;
+}
+
+.item-tariff-title-price-description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 678px;
+  width: 100%;
+}
+
+.item-tariff-service-title-and-price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.item-tariff-service-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: calc(12px + 10 * ((100vw - 320px) / 1600));
+  font-weight: 700;
+  line-height: 30px;
+  color: #545454;
+}
+
+.item-tariff-service-price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-tariff-service-price-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: calc(12px + 10 * ((100vw - 320px) / 1600));
+  font-weight: 700;
+  line-height: 30px;
+  color: #545454;
+  margin-right: 15px;
+}
+
+.item-tariff-service-price-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: calc(12px + 6 * ((100vw - 320px) / 1600));
+  font-weight: 600;
+  line-height: 24.5px;
+  color: #545454;
+}
+
+.item-tariff-description-wrapper {
+  margin-top: 17px;
+  margin-left: 58px;
+  max-width: 60%;
+  width: 100%;
+  display: none;
+}
+
+.item-tariff-description-wrapper.active {
+  display: block;
+}
+
+.item-tariff-description {
+  font-size: calc(12px + 6 * ((100vw - 320px) / 1600));
+  font-weight: 400;
+  line-height: 24.5px;
+  color: #545454;
+  margin-bottom: 30px;
+}
+
+.button-tariff-details-and-offer {
+  max-width: 30%;
+  min-width: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.button-tariff-details.service-page {
+  max-width: 162px;
+  min-width: 100px;
+  padding: 13px 0;
+  width: 100%;
+  margin-top: 0;
+  font-weight: 600;
+  line-height: 22px;
+  color: white;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.button-tariff-details.service-page:hover {
+  background-color: #FFFFFF;
+  color: #3990F1;
+}
+
+.button-tariff-offer.service-page {
+  margin-left: 15px;
+  max-width: 162px;
+  width: 100%;
+  padding: 13px 0;
+  margin-top: 0;
+  font-weight: 600;
+  line-height: 22px;
+  color: white;
+}
+
+.section-3.service-page {
+  margin-top: 64px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.section-3-part-1 {
+  max-width: 570px;
+  width: 100%;
+  margin-right: 30px;
+}
+
+.section-3-part-2 {
+  max-width: 570px;
+  width: 100%;
+}
+
+/*.simplebar-track.simplebar-horizontal{
+    width: 100%;
+    margin: auto;
+    background-color: rgba(0,0,255,0.1);
+    height: 4px;
+    border-radius: 3px;
+}
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+    opacity: 1;
+    top: 0;
+}
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar::before{
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 1;
+    background-color: #3990F1;
+    height: 4px;
+}
+.simplebar-content{
+    display: flex;
+    flex-direction: column;
+}*/
+
+.mobile-button-tariff-details-and-offer {
+  width: 37px;
+  height: 37px;
+  min-width: 37px;
+  background-color: #3990F1;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+}
+
+.icon-basket {
+  width: 21px;
+  height: 20px;
+  fill: white;
+}
+
+.section-3.service-page p {
+  font-weight: 400;
+  color: #545454;
+  line-height: 22px;
+}
+
+.section-3.service-page p.bold {
+  font-weight: 600;
+}
+
+.text-ul-services li {
+  line-height: 32px;
+  color: #545454;
+}
+
 @media (max-width: 1900px) {
   .section-3-backimg {
     width: 100%;
@@ -3508,6 +3869,21 @@ footer {
         -ms-flex-align: center;
             align-items: center;
   }
+
+  .section-1.service-page {
+    padding-top: 50px;
+  }
+
+  .item-service-service-page {
+    max-width: 400px;
+    width: 32%;
+  }
+}
+
+@media (max-width: 1187px) {
+  .item-service-service-page {
+    max-width: 500px;
+  }
 }
 
 @media (max-width: 960px) {
@@ -3619,6 +3995,17 @@ footer {
 
   .enter-registration {
     display: none;
+  }
+
+  .item-tariff-service-title-and-price {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .button-tariff-details-and-offer {
+    max-width: 40%;
   }
 }
 
@@ -3795,6 +4182,16 @@ footer {
   .section-1-wrapper {
     background-image: none;
   }
+
+  .button-tariff-details-and-offer {
+    display: none;
+  }
+
+  .mobile-button-tariff-details-and-offer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 @media (max-width: 550px) {
@@ -3828,6 +4225,13 @@ footer {
 
   footer {
     padding-top: 100px;
+  }
+
+  .section-3.service-page {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 

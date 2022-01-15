@@ -88,10 +88,59 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         })
         document.addEventListener("click", function(e){
-            if(e.target!=selectTariffContent){
-                selectTariffSubmenu.classList.remove("active");
+            if(selectTariffContent){
+                if(e.target!=selectTariffContent){
+                    selectTariffSubmenu.classList.remove("active");
+                }
             }
         })
+
+        const dataTariff = {
+            subscribers: [{name: "Подписчики Супер Эконом", value: "0.23", description: "Здесь будет описание"}, 
+                    {name: "Подписчики Эконом", value: "0.50", description: "Здесь будет описание"},
+                    {name: "Подписчики Стандарт", value: "1", description: "Здесь будет описание"},
+                    {name: "Подписчики Премиум", value: "2", description: "Здесь будет описание"}],
+            likes: [{name: `Лайки на пост "Эконом"`, value: "0.12", description: "Здесь будет описание"},
+                    {name: `Лайки на пост "Стандарт"`, value: "0.50", description: "Здесь будет описание"},
+                    {name: `Лайки на пост "Премиум"`, value: "1", description: "Здесь будет описание"}],
+            streams: [{name: `Просмотры трансляций "Эконом"`, value: "0.12", description: "Здесь будет описание"},
+                    {name: `Просмотры трансляций "Стандарт"`, value: "0.50", description: "Здесь будет описание"},
+                    {name: `Просмотры трансляций "Премиум"`, value: "1", description: "Здесь будет описание"},
+                    {name: `Просмотры трансляций "Про"`, value: "2", description: "Здесь будет описание"}],
+            igtv: [{name: `IGTV "Эконом"`, value: "0.12", description: "Здесь будет описание"},
+                    {name: `IGTV "Стандарт"`, value: "0.50", description: "Здесь будет описание"},
+                    {name: `IGTV "Премиум"`, value: "1", description: "Здесь будет описание"},
+                    {name: `IGTV "Про"`, value: "2", description: "Здесь будет описание"}],
+            comments: [{name: `Комментарии на пост "Эконом"`, value: "0.12", description: "Здесь будет описание"},
+                    {name: `Комментарии на пост "Стандарт"`, value: "0.50", description: "Здесь будет описание"},
+                    {name: `Комментарии на пост "Премиум"`, value: "1", description: "Здесь будет описание"},
+                    {name: `Комментарии на пост "Про"`, value: "2", description: "Здесь будет описание"}],
+            visits: [{name: `Посещения "Эконом"`, value: "0.12", description: "Здесь будет описание"},
+                    {name: `Посещения "Стандарт"`, value: "0.50"},
+                    {name: `Посещения "Премиум"`, value: "1"},
+                    {name: `Посещения "Про"`, value: "2", description: "Здесь будет описание"}],
+            reels: [{name: `Reels "Эконом"`, value: "0.12"},
+                    {name: `Reels "Стандарт"`, value: "0.50"},
+                    {name: `Reels "Премиум"`, value: "1"},
+                    {name: `Reels "Про"`, value: "2", description: "Здесь будет описание"}],   
+            histories: [{name: `Истории "Эконом"`, value: "0.12", description: "Здесь будет описание"},
+                    {name: `Истории "Стандарт"`, value: "0.50", description: "Здесь будет описание"},
+                    {name: `Истории "Премиум"`, value: "1", description: "Здесь будет описание"},
+                    {name: `Истории "Про"`, value: "2", description: "Здесь будет описание"}],        
+        }
+        const dataSocial = {
+            instagram: [ "subscribers", "likes", "streams", "comments", "histories"],
+            telegram: ["subscribers", "likes"],
+            tiktok: ["subscribers", "likes"],
+            youtube: ["subscribers", "likes"],
+            vk: ["comments"],
+            discord: ["streams"],
+            surface: ["streams"],
+            odnoklassniki: ["streams"],
+            twitter: ["subscribers", "likes"],
+            appstore: [ "subscribers", "likes", "streams", "comments", "histories"],
+            }
+        const itemServices = Array.from(document.getElementsByClassName("item-service-service-page"));
         ////////////////////////////////////// enter-popup
         const buttonEnterProfile = document.querySelector(".link-button.small")
         const enterProfilePopup = document.querySelector(".enter-popup");
@@ -331,8 +380,21 @@ document.addEventListener('DOMContentLoaded', function(){
                 selectSocialSubmenu.classList.add("active");
             }
         })
+        let nameSocialNetworkMobile = 0;
         selectSocialSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
             selectSocialContent.innerHTML = this.innerHTML;
+            selectSocialContent.dataset.name = this.dataset.name;
+            nameSocialNetworkMobile = this.dataset.name;
+            for (let i = 0; i < selectServicesSubmenuItemMobile.length; i++){
+                if( selectServicesSubmenuItemMobile[i].classList.contains("selected")){
+                    selectServicesSubmenuItemMobile[i].classList.remove("selected");
+                }
+            }
+            if(dataSocial[this.dataset.name].length!=null){
+                for (let i=0; i<dataSocial[this.dataset.name].length; i++){
+                    document.querySelector(`.item-mobile-list-of-services[data-name="${dataSocial[this.dataset.name][i]}"]`).classList.add("selected");
+                }
+            }
         })})
         /////////////////////////////////////////////////////
 
@@ -351,6 +413,57 @@ document.addEventListener('DOMContentLoaded', function(){
          })
          selectServicesSubmenuItemMobile.forEach(function(el){ el.addEventListener("click", function(){
              selectServicesContentMobile.innerHTML = this.innerHTML;
+             selectServicesContentMobile.dataset.name = this.dataset.name;
+             console.log(selectServicesContentMobile.dataset.name);
+             listTariffServices.innerHTML = "";
+                for(let j=0; j<dataTariff[this.dataset.name].length; j++){
+                    let a = document.createElement("div");
+                    a.className = "item-tariff-of-service";
+                    a.innerHTML = `<div class="item-tariff-title-and-description">
+                        <div class="item-tariff-title-wrapper">
+                            <div class="social-icon-for-tariff">
+                                <img src="${`../img/` + nameSocialNetworkMobile + `.png`}" alt="alt">
+                            </div>
+                            <div class="item-tariff-title-price-description">
+                                <div class="item-tariff-service-title-and-price">
+                                    <div class="item-tariff-service-title">${dataTariff[this.dataset.name][j].name}</div>
+                                    <div class="item-tariff-service-price">
+                                        <div class="item-tariff-service-price-title">Цена:</div>
+                                        <div class="item-tariff-service-price-value">${dataTariff[this.dataset.name][j].value}₽ за 1 шт</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-tariff-details-and-offer">
+                            <button class="button-tariff-details service-page" data-id="${j}" type="button">Подробнее</button>
+                            <button class="button-tariff-offer service-page" type="button">Заказать</button>
+                        </div>
+                        <div class="mobile-button-tariff-details-and-offer">
+                            <svg class="icon-basket">
+                                <use xlink:href="img/icons/icons.svg#basket"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="item-tariff-description-wrapper" data-id="${j}">
+                        <div class="item-tariff-description">Активные пользователи лайкают 
+                            Вашу онлайн трансляцию. Мгновенный старт и огромные объемы.</div>
+                        <div class="quest-quality-and-speed service-page">
+                            <div class="quest-quality">
+                                <span>Качество: 3/5</span>
+                                <div class="likes">
+                                    <img src="img/like.png" alt="alt">
+                                </div>
+                            </div>
+                            <div class="quest-speed">
+                                <span>Скорость: 3/5</span>
+                                <div class="likes">
+                                    <img src="img/like.png" alt="alt">
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                listTariffServices.appendChild(a);
+            }
          })})
 
 
@@ -358,26 +471,28 @@ document.addEventListener('DOMContentLoaded', function(){
 
          ///////////////////////////////////////////////////// select left service and put in select right
          const listOfServices = document.getElementsByClassName("item-service");
-         listOfServices.forEach(function(el){el.addEventListener("click", function(){
-             if(document.querySelector(".item-service.active")){
-                document.querySelector(".item-service.active").classList.remove("active");
-             }
-            let itemSubmenuListOfServices = document.querySelectorAll(`.service-submenu-item[data-name=${this.dataset.name}]`);
-            if(itemSubmenuListOfServices.length!=0){
-                this.classList.add("active");
-                selectTariffSubmenu.innerHTML = "";
-                for(let i=0; i<itemSubmenuListOfServices.length; i++){
-                    let variableForSubMenuItem = document.createElement("div");
-                    variableForSubMenuItem.classList.add("item-list-of-tariff");
-                    variableForSubMenuItem.setAttribute("data-value", itemSubmenuListOfServices[i].dataset.value);
-                    variableForSubMenuItem.innerHTML = itemSubmenuListOfServices[i].innerHTML;
-                    selectTariffSubmenu.appendChild(variableForSubMenuItem);
+         if(listOfServices){
+            listOfServices.forEach(function(el){el.addEventListener("click", function(){
+                if(document.querySelector(".item-service.active")){
+                    document.querySelector(".item-service.active").classList.remove("active");
                 }
-                selectTariffContent.textContent = "Выберите тариф";
-                selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
-                selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", selectServiceTariffSubmenu)});
-            }
-         })})
+                let itemSubmenuListOfServices = document.querySelectorAll(`.service-submenu-item[data-name=${this.dataset.name}]`);
+                if(itemSubmenuListOfServices.length!=0){
+                    this.classList.add("active");
+                    selectTariffSubmenu.innerHTML = "";
+                    for(let i=0; i<itemSubmenuListOfServices.length; i++){
+                        let variableForSubMenuItem = document.createElement("div");
+                        variableForSubMenuItem.classList.add("item-list-of-tariff");
+                        variableForSubMenuItem.setAttribute("data-value", itemSubmenuListOfServices[i].dataset.value);
+                        variableForSubMenuItem.innerHTML = itemSubmenuListOfServices[i].innerHTML;
+                        selectTariffSubmenu.appendChild(variableForSubMenuItem);
+                    }
+                    selectTariffContent.textContent = "Выберите тариф";
+                    selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
+                    selectTariffSubmenuItem.forEach(function(el){ el.addEventListener("click", selectServiceTariffSubmenu)});
+                }
+            })})
+        }
          ///////////////////////////////////////////////////////////////////
 
          ////////////////////////////////////////////////// select-tariff
@@ -385,14 +500,16 @@ document.addEventListener('DOMContentLoaded', function(){
          const selectTariffContent = document.querySelector(".list-of-tariff-content");
          const selectTariffSubmenu = document.querySelector(".list-of-tariff");
          let selectTariffSubmenuItem = Array.from(document.getElementsByClassName("item-list-of-tariff"));
-         selectTariff.addEventListener("click", function(){
-             if(selectTariffSubmenu.classList.contains("active")){
-                 selectTariffSubmenu.classList.remove("active");
-             }
-             else{
-                 selectTariffSubmenu.classList.add("active");
-             }
-         })
+         if(selectTariff){
+            selectTariff.addEventListener("click", function(){
+                if(selectTariffSubmenu.classList.contains("active")){
+                    selectTariffSubmenu.classList.remove("active");
+                }
+                else{
+                    selectTariffSubmenu.classList.add("active");
+                }
+            })
+        }
          function selectServiceTariffSubmenu(){
             selectTariffContent.innerHTML = this.innerHTML;
             selectTariffContent.dataset.value = this.dataset.value;
@@ -432,15 +549,108 @@ document.addEventListener('DOMContentLoaded', function(){
         })
         ///////////////////////////form input calculate tariff main page
         const itemsSocialNetwork = document.getElementsByClassName("item-social");
-        itemsSocialNetwork.forEach(function(el){el.addEventListener("click", function(){
-            if(document.querySelector(".item-social.active")==null){
+        let nameSocialNetwork = 0;
+        if(itemsSocialNetwork){
+            itemsSocialNetwork.forEach(function(el){el.addEventListener("click", function(){
+                if(document.querySelector(".item-social.active")){
+                    document.querySelector(".item-social.active").classList.remove("active");
+                }
+                if(document.querySelector(".item-social.selected")!=null){
+                    document.querySelector(".item-social.selected").classList.remove("selected");
+                    for(let i = 0; i< itemServices.length; i++){
+                        if(itemServices[i].classList.contains("selected")){
+                            itemServices[i].classList.remove("selected");
+                        }
+                    }
+                }
+                this.classList.add("active");
+                nameSocialNetwork = this.dataset.name;
+                for( let i = 0; i < itemServices.length; i++){
+                    if(itemServices[i].classList.contains("selected")){
+                        itemServices[i].classList.remove("selected");
+                    }
+                }
+                if(dataSocial[this.dataset.name].length!=null){
+                    for (let i=0; i<dataSocial[this.dataset.name].length; i++){
 
-            }
-            else{
-                document.querySelector(".item-social.active").classList.remove("active");
-            }
-            this.classList.add("active");
-        })}) 
+                        document.querySelector(`.item-service-service-page[data-name="${dataSocial[this.dataset.name][i]}"]`).classList.add("selected");
+                    }
+                }
+            })})
+        }
+        if(itemServices){
+            itemServices.forEach(function(el){el.addEventListener("click", function(){
+                if(document.querySelector(".item-service-service-page.active")){
+                    document.querySelector(".item-service-service-page.active").classList.remove("active");
+                }
+                this.classList.add("active");
+                listTariffServices.innerHTML = "";
+                for(let j=0; j<dataTariff[this.dataset.name].length; j++){
+                    console.log(this.dataset.name);
+                    let a = document.createElement("div");
+                    a.className = "item-tariff-of-service"
+                    a.innerHTML = `<div class="item-tariff-title-and-description">
+                        <div class="item-tariff-title-wrapper">
+                            <div class="social-icon-for-tariff">
+                                <img src="${`../img/` + nameSocialNetwork + `.png`}" alt="alt">
+                            </div>
+                            <div class="item-tariff-title-price-description">
+                                <div class="item-tariff-service-title-and-price">
+                                    <div class="item-tariff-service-title">${dataTariff[this.dataset.name][j].name}</div>
+                                    <div class="item-tariff-service-price">
+                                        <div class="item-tariff-service-price-title">Цена:</div>
+                                        <div class="item-tariff-service-price-value">${dataTariff[this.dataset.name][j].value}₽ за 1 шт</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-tariff-details-and-offer">
+                            <button class="button-tariff-details service-page" data-id="${j}" type="button">Подробнее</button>
+                            <button class="button-tariff-offer service-page" type="button">Заказать</button>
+                        </div>
+                        <div class="mobile-button-tariff-details-and-offer">
+                            <svg class="icon-basket">
+                                <use xlink:href="img/icons/icons.svg#basket"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="item-tariff-description-wrapper" data-id="${j}">
+                        <div class="item-tariff-description">Активные пользователи лайкают 
+                            Вашу онлайн трансляцию. Мгновенный старт и огромные объемы.</div>
+                        <div class="quest-quality-and-speed service-page">
+                            <div class="quest-quality">
+                                <span>Качество: 3/5</span>
+                                <div class="likes">
+                                    <img src="img/like.png" alt="alt">
+                                </div>
+                            </div>
+                            <div class="quest-speed">
+                                <span>Скорость: 3/5</span>
+                                <div class="likes">
+                                    <img src="img/like.png" alt="alt">
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                listTariffServices.appendChild(a);
+                };
+                let accordeonTariff = Array.from(document.getElementsByClassName("button-tariff-details service-page"));
+                accordeonTariff.forEach(function(el) {el.addEventListener('click', function (){
+                    if(this.classList.contains("active")){
+                        console.log(this);
+                        this.textContent = "Подробнее";
+                        this.classList.remove("active");
+                        document.querySelector(`.item-tariff-description-wrapper[data-id="${this.dataset.id}"]`).classList.remove("active");
+                    }
+                    else{
+                        this.classList.add("active");
+                        this.textContent = "Скрыть";
+                        document.querySelector(`.item-tariff-description-wrapper[data-id="${this.dataset.id}"]`).classList.add("active");
+                    }
+                })})
+            } )})
+        } 
+
         const countOfInputSub = document.querySelector(".count-value input");
         const inputSliderForSub =  document.querySelector(".js-input-for-count-sub");
         const totalSummForSub = document.querySelector(".total-value input");
@@ -553,29 +763,38 @@ document.addEventListener('DOMContentLoaded', function(){
 
         ///////////////////////////////////// 
 
-        ////////////////////accordeon
+        ////////////////////accordeon main
         const accordeonQuestion = Array.from(document.getElementsByClassName("question"));
-        accordeonQuestion.forEach(function(el) {el.addEventListener('click', function (){
-            this.classList.add("active");
-            let hideAccordeon = this.nextElementSibling;
-            console.log(hideAccordeon);
-            if (hideAccordeon.classList.contains("active")) {
-                hideAccordeon.classList.remove("active");
-                this.classList.remove("active");
-            } else {
-                hideAccordeon.classList.add("active")
-            }
-        })})
+        if(accordeonQuestion){
+            accordeonQuestion.forEach(function(el) {el.addEventListener('click', function (){
+                this.classList.add("active");
+                let hideAccordeon = this.nextElementSibling;
+                console.log(hideAccordeon);
+                if (hideAccordeon.classList.contains("active")) {
+                    hideAccordeon.classList.remove("active");
+                    this.classList.remove("active");
+                } else {
+                    hideAccordeon.classList.add("active")
+                }
+            })})
+        }
         /////////////////////////////////////
-
+        /////////////////////////////////////
 
         /////////////////////////////////////// scrollbar
         const listFeedback = document.querySelector('.list-of-feedback');
-        const simpleBarForListFeedback = new SimpleBar(listFeedback, {
-            autoHide: false
-        });
+        if(listFeedback){
+            const simpleBarForListFeedback = new SimpleBar(listFeedback, {
+                autoHide: false
+            });
+        }
 
-
+        const listTariffServices = document.querySelector('.services-tariffs');
+        if(listTariffServices){
+            const simpleBarForListTariffServices = new SimpleBar(listTariffServices, {
+                autoHide: false
+            });
+        }
 
         //////////////////////// LOAD MORE
         let countLoadComments = 3;
@@ -584,15 +803,17 @@ document.addEventListener('DOMContentLoaded', function(){
         for(let i = 3; i<feedBackComments.length; i++){
             feedBackComments[i].classList.add("disabled");
         }
-        buttonLoadMore.addEventListener('click', function(){
-            countLoadComments +=3;
-            if(feedBackComments.length>=countLoadComments){
-                for(let i=0; i<countLoadComments; i++){
-                    feedBackComments[i].classList.remove("disabled");
-                }
-                if(feedBackComments.length==countLoadComments){
-                    buttonLoadMore.classList.add("disabled");
-                }
-                simpleBarForListFeedback.recalculate();
-        }})
+        if(buttonLoadMore){
+            buttonLoadMore.addEventListener('click', function(){
+                countLoadComments +=3;
+                if(feedBackComments.length>=countLoadComments){
+                    for(let i=0; i<countLoadComments; i++){
+                        feedBackComments[i].classList.remove("disabled");
+                    }
+                    if(feedBackComments.length==countLoadComments){
+                        buttonLoadMore.classList.add("disabled");
+                    }
+                    simpleBarForListFeedback.recalculate();
+            }})
+        }
 })

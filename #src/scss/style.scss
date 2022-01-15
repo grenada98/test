@@ -578,6 +578,12 @@ nav{
     cursor: pointer;
     transition: 0.4s;
 }
+.item-mobile-list-of-services{
+    display: none;
+}
+.item-mobile-list-of-services.selected{
+    display: flex;
+}
 .item-list-of-tariff,
 .item-list-of-tariff-popup{
     background-color: #FFFFFF;
@@ -727,6 +733,12 @@ nav{
     background-color: #F8FAFD;
     border-radius: 10px;
 }
+.services-window.service-page{
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 0px;
+    background-color: #FFFFFF;
+}
 .services-window .title{
     color: #545454;
     font-size: 22px;
@@ -737,6 +749,11 @@ nav{
 .list-of-services{
     list-style: none;
     padding-left: 0;;
+}
+.list-of-services.service-page{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
 }
 .item-service,
 .service-submenu-item{
@@ -754,6 +771,35 @@ nav{
 }
 .item-service.active{
     background-color: #EBF0F8;
+}
+.item-service-service-page{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    max-width: 226px;
+    width: 19%;
+    min-width: 205px;
+    padding: 19px 37px;
+    border-radius: 10px;
+    background-color: #F8FAFD;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.item-service-service-page.selected{
+    display: flex;
+}
+.item-service-service-page.active{
+    background-color: #c9cacc;
+}
+.item-service-service-page:hover,
+.item-service-service-page.active{
+    background-color: #EBF0F8;
+}
+.item-service-service-page .icon-service{
+    margin-right: 10px;
 }
 .item-service-submenu-wrapper{
     position: absolute;
@@ -1579,20 +1625,6 @@ footer{
 ///////////////////////////////////////////////////// end FOOTER
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .main-disabled{
     display: none;
     position: fixed;
@@ -1772,7 +1804,9 @@ footer{
 .pay-offer-button,
 .edit-services-order-continue-button,
 .wrong-pay-button,
-.successful-pay-button{
+.successful-pay-button,
+.button-tariff-details,
+.button-tariff-offer{
     margin-top: 20px;
     padding: 12px 55px 13px 56px;
     border: 1px solid #3990F1;
@@ -1793,7 +1827,9 @@ footer{
 .pay-offer-button:hover,
 .edit-services-order-continue-button:hover,
 .wrong-pay-button:hover,
-.successful-pay-button:hover{
+.successful-pay-button:hover,
+.button-tariff-details:hover,
+.button-tariff-offer:hover{
     background-color: #FFFFFF;
     color: #3990F1;
 }
@@ -2399,6 +2435,242 @@ footer{
     text-align: center;
     margin-bottom: 9px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////// service page
+.image-mobile{
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 135%;
+    transform: translateY(-30%);
+}
+.image-mobile img{
+    width: 100%;
+}
+.services-tariffs{
+    width: 100%;
+    max-height: 920px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 60px;
+    background-color: #FFFFFF;
+    padding: 15px 0;
+    border-radius: 10px;
+}
+.item-tariff-of-service{
+    display: flex;
+    flex-direction: column;
+    padding: 14px 20px 21px 24px;
+    background-color: #F8FAFD;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.item-tariff-title-and-description{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item-tariff-title-wrapper{
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    margin-right: 15px;
+}
+.social-icon-for-tariff{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+.item-tariff-title-price-description{
+    display: flex;
+    justify-content: space-between;
+    max-width: 678px;
+    width: 100%;
+}
+.item-tariff-service-title-and-price{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.item-tariff-service-title{
+    display: flex;
+    align-items: center;
+    @include adaptiv-font(22, 12);
+    font-weight: 700;
+    line-height: 30px;
+    color: #545454;
+}
+.item-tariff-service-price{
+    display: flex;
+    align-items: center;
+}
+.item-tariff-service-price-title{
+    display: flex;
+    align-items: center;
+    @include adaptiv-font(22, 12);
+    font-weight: 700;
+    line-height: 30px;
+    color: #545454;
+    margin-right: 15px;
+}
+.item-tariff-service-price-value{
+    display: flex;
+    align-items: center;
+    @include adaptiv-font(18, 12);
+    font-weight: 600;
+    line-height: 24.5px;
+    color: #545454;
+}
+.item-tariff-description-wrapper{
+    margin-top: 17px;
+    margin-left: 58px;
+    max-width: 60%;
+    width: 100%;
+    display: none;
+}
+.item-tariff-description-wrapper.active{
+    display: block;
+}
+.item-tariff-description{
+    @include adaptiv-font(18, 12);
+    font-weight: 400;
+    line-height: 24.5px;
+    color: #545454;
+    margin-bottom: 30px;
+}
+.button-tariff-details-and-offer{
+    max-width: 30%;
+    min-width: 100px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.button-tariff-details.service-page{
+    max-width: 162px;
+    min-width: 100px;
+    padding: 13px 0;
+    width: 100%;
+    margin-top: 0;
+    font-weight: 600;
+    line-height: 22px;
+    color: white;
+    transition: 0.4s;
+}
+.button-tariff-details.service-page:hover{
+    background-color: #FFFFFF;
+    color: #3990F1;
+}
+.button-tariff-offer.service-page{
+    margin-left: 15px;
+    max-width: 162px;
+    width: 100%;
+    padding: 13px 0;
+    margin-top: 0;
+    font-weight: 600;
+    line-height: 22px;
+    color: white;
+}
+.section-3.service-page{
+    margin-top: 64px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.section-3-part-1{
+    max-width: 570px;
+    width: 100%;
+    margin-right: 30px;
+}
+.section-3-part-2{
+    max-width: 570px;
+    width: 100%;
+}
+/*.simplebar-track.simplebar-horizontal{
+    width: 100%;
+    margin: auto;
+    background-color: rgba(0,0,255,0.1);
+    height: 4px;
+    border-radius: 3px;
+}
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+    opacity: 1;
+    top: 0;
+}
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar::before{
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    opacity: 1;
+    background-color: #3990F1;
+    height: 4px;
+}
+.simplebar-content{
+    display: flex;
+    flex-direction: column;
+}*/
+.mobile-button-tariff-details-and-offer{
+    width: 37px;
+    height: 37px;
+    min-width: 37px;
+    background-color: #3990F1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.icon-basket{
+    width: 21px;
+    height: 20px;
+    fill: white;
+}
+.section-3.service-page p{
+    font-weight: 400;
+    color: #545454;
+    line-height: 22px;
+}
+.section-3.service-page p.bold{
+    font-weight: 600;
+}
+.text-ul-services li{
+    line-height: 32px;
+    color: #545454;
+}
+
+
+
+/////////////////////////////////////////////////////////// END service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 1900px){
     .section-3-backimg{
         width: 100%;
@@ -2523,6 +2795,21 @@ footer{
         flex-direction: column;
         align-items: center;
     }
+
+
+
+    .section-1.service-page{
+        padding-top: 50px;
+    }
+    .item-service-service-page{
+        max-width: 400px;
+        width: 32%;
+    }
+}
+@media (max-width: 1187px){
+    .item-service-service-page{
+        max-width: 500px;
+    }
 }
 @media (max-width: 960px){
     .section-1-wrapper{
@@ -2597,6 +2884,15 @@ footer{
     }
     .enter-registration{
         display: none;
+    }
+
+
+
+    .item-tariff-service-title-and-price{
+        flex-direction: column;
+    }
+    .button-tariff-details-and-offer{
+        max-width: 40%;
     }
 }
 @media (max-width: 800px){
@@ -2726,6 +3022,15 @@ footer{
     .section-1-wrapper{
         background-image: none;
     }
+
+
+
+    .button-tariff-details-and-offer{
+        display: none;
+    }
+    .mobile-button-tariff-details-and-offer{
+        display: flex;
+    }
 }
 @media (max-width: 550px){
     .pay-offer-popup-details-offer-counts-input{
@@ -2749,6 +3054,12 @@ footer{
     footer{
         background-image: url("../img/footeradapt.png");
         padding-top: 100px;
+    }
+
+
+
+    .section-3.service-page{
+        flex-direction: column;
     }
 }
 @media (max-width: 495px){
