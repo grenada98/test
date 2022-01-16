@@ -141,6 +141,17 @@ document.addEventListener('DOMContentLoaded', function(){
             appstore: [ "subscribers", "likes", "streams", "comments", "histories"],
             }
         const itemServices = Array.from(document.getElementsByClassName("item-service-service-page"));
+        
+
+        ////////////////////////////// Ссылки хедера активные
+        const headerLinks = document.getElementsByClassName("header-menu-item");
+        headerLinks.forEach(function(el){el.addEventListener("click", function(){
+            if(document.querySelector("header-menu-item").contains("active")){
+                document.querySelector("header-menu-item").classList.remove("active");
+            }
+            this.classList.add("active");
+        })})
+        
         ////////////////////////////////////// enter-popup
         const buttonEnterProfile = document.querySelector(".link-button.small")
         const enterProfilePopup = document.querySelector(".enter-popup");
@@ -372,14 +383,16 @@ document.addEventListener('DOMContentLoaded', function(){
         const selectSocialContent = document.querySelector(".mobile-list-of-social-content");
         const selectSocialSubmenu = document.querySelector(".mobile-list-of-social");
         const selectSocialSubmenuItem = Array.from(document.getElementsByClassName("item-mobile-list-of-social"));
-        selectSocial.addEventListener("click", function(){
-            if(selectSocialSubmenu.classList.contains("active")){
-                selectSocialSubmenu.classList.remove("active");
-            }
-            else{
-                selectSocialSubmenu.classList.add("active");
-            }
-        })
+        if(selectSocial){
+            selectSocial.addEventListener("click", function(){
+                if(selectSocialSubmenu.classList.contains("active")){
+                    selectSocialSubmenu.classList.remove("active");
+                }
+                else{
+                    selectSocialSubmenu.classList.add("active");
+                }
+            })
+        }
         let nameSocialNetworkMobile = 0;
         selectSocialSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
             selectSocialContent.innerHTML = this.innerHTML;
@@ -403,14 +416,16 @@ document.addEventListener('DOMContentLoaded', function(){
          const selectServicesContentMobile = document.querySelector(".mobile-list-of-services-content");
          const selectServicesSubmenuMobile = document.querySelector(".mobile-list-of-services");
          const selectServicesSubmenuItemMobile = Array.from(document.getElementsByClassName("item-mobile-list-of-services"));
-         selectServicesMobile.addEventListener("click", function(){
-             if(selectServicesSubmenuMobile.classList.contains("active")){
-                 selectServicesSubmenuMobile.classList.remove("active");
-             }
-             else{
-                 selectServicesSubmenuMobile.classList.add("active");
-             }
-         })
+        if(selectServicesMobile){
+            selectServicesMobile.addEventListener("click", function(){
+                if(selectServicesSubmenuMobile.classList.contains("active")){
+                    selectServicesSubmenuMobile.classList.remove("active");
+                }
+                else{
+                    selectServicesSubmenuMobile.classList.add("active");
+                }
+            })
+        }
          selectServicesSubmenuItemMobile.forEach(function(el){ el.addEventListener("click", function(){
              selectServicesContentMobile.innerHTML = this.innerHTML;
              selectServicesContentMobile.dataset.name = this.dataset.name;
@@ -464,6 +479,20 @@ document.addEventListener('DOMContentLoaded', function(){
                     </div>`
                 listTariffServices.appendChild(a);
             }
+            let accordeonTariff = Array.from(document.getElementsByClassName("button-tariff-details service-page"));
+            accordeonTariff.forEach(function(el) {el.addEventListener('click', function (){
+                if(this.classList.contains("active")){
+                    console.log(this);
+                    this.textContent = "Подробнее";
+                    this.classList.remove("active");
+                    document.querySelector(`.item-tariff-description-wrapper[data-id="${this.dataset.id}"]`).classList.remove("active");
+                }
+                else{
+                    this.classList.add("active");
+                    this.textContent = "Скрыть";
+                    document.querySelector(`.item-tariff-description-wrapper[data-id="${this.dataset.id}"]`).classList.add("active");
+                }
+            })})
          })})
 
 
@@ -783,13 +812,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
         /////////////////////////////////////// scrollbar
         const listFeedback = document.querySelector('.list-of-feedback');
+        let simpleBarForListFeedback;
         if(listFeedback){
-            const simpleBarForListFeedback = new SimpleBar(listFeedback, {
+            simpleBarForListFeedback = new SimpleBar(listFeedback, {
                 autoHide: false
             });
         }
 
         const listTariffServices = document.querySelector('.services-tariffs');
+        let simpleBarForListTariffServices;
         if(listTariffServices){
             const simpleBarForListTariffServices = new SimpleBar(listTariffServices, {
                 autoHide: false
