@@ -93,6 +93,12 @@ document.addEventListener('DOMContentLoaded', function(){
                     selectTariffSubmenu.classList.remove("active");
                 }
             }
+            if(payUpSelect){
+                if(e.target!=payUpSelect){
+                    console.log("noselect");
+                    document.querySelector(".pay-up-balance-form-select-submenu").classList.remove("active");
+                }
+            }
         })
 
         const dataTariff = {
@@ -822,7 +828,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const listTariffServices = document.querySelector('.services-tariffs');
         let simpleBarForListTariffServices;
         if(listTariffServices){
-            const simpleBarForListTariffServices = new SimpleBar(listTariffServices, {
+            simpleBarForListTariffServices = new SimpleBar(listTariffServices, {
                 autoHide: false
             });
         }
@@ -846,5 +852,134 @@ document.addEventListener('DOMContentLoaded', function(){
                     }
                     simpleBarForListFeedback.recalculate();
             }})
+        }
+        let paginationButtonFeedback = document.getElementsByClassName("pagination-button");
+        if(paginationButtonFeedback){
+            paginationButtonFeedback.forEach(function(el){el.addEventListener("click", function(){
+                for(let i = 0; i< paginationButtonFeedback.length; i++){
+                    if(paginationButtonFeedback[i].classList.contains("active")){
+                        paginationButtonFeedback[i].classList.remove("active");
+                    }
+                }
+                this.classList.add("active");
+            })})
+        }
+        const buttonPanelControl = document.getElementsByClassName("control-panel-button");
+        if(buttonPanelControl){
+            buttonPanelControl.forEach(function(el){el.addEventListener("click", function(){
+                for(let i = 0; i< buttonPanelControl.length; i++){
+                    if(buttonPanelControl[i].classList.contains("active")){
+                        buttonPanelControl[i].classList.remove("active");
+                    }
+                }
+                this.classList.add("active");
+                if(document.querySelector(".control-panel-body-content.active")){
+                    document.querySelector(".control-panel-body-content.active").classList.remove("active");
+                }
+                document.querySelector(`.control-panel-body-content[data-name="${this.dataset.name}"]`).classList.add("active");
+            })})
+        }
+        const payUpSelect = document.querySelector(".pay-up-balance-form-select-wrapper input");
+        const selectPayUp = document.getElementsByClassName("pay-up-balance-form-select-submenu-item")
+        const inputPayUp = document.querySelector(".pay-up-balance-form-select-wrapper input");
+        if(inputPayUp){
+            inputPayUp.addEventListener("click", function(){
+                document.querySelector(".pay-up-balance-form-select-submenu").classList.add("active");
+            })
+        }
+        if(selectPayUp){
+            selectPayUp.forEach(function(el){el.addEventListener("click", function(){
+                if(document.querySelector(".pay-up-balance-form-select-submenu-item.selected")!=null){
+                    document.querySelector(".pay-up-balance-form-select-submenu-item.selected").classList.remove("selected");
+                    for(let i = 0; i< selectPayUp.length; i++){
+                        if(selectPayUp[i].classList.contains("selected")){
+                            selectPayUp[i].classList.remove("selected");
+                        }
+                    }
+                }
+                document.querySelector(".pay-up-balance-form-select-submenu").classList.remove("active");
+                this.classList.add("selected");
+                document.querySelector(".pay-up-balance-form-select-wrapper input").value = this.dataset.value;
+            })})
+        }
+        const buttonSortOfferHistory = document.getElementsByClassName("history-offer-button");
+        if(buttonSortOfferHistory){
+            buttonSortOfferHistory.forEach(function(el){el.addEventListener("click", function(){
+                if(document.querySelector(".history-offer-button.active")){
+                    document.querySelector(".history-offer-button.active").classList.remove("active");
+                    document.querySelector(`.history-offer-list.active`).classList.remove("active");
+                }
+                this.classList.add("active");
+                document.querySelector(`.history-offer-list[data-name="${this.dataset.name}"]`).classList.add("active");
+            })})
+        }
+        const checkboxSettingsFake = document.getElementsByClassName("settings-checkbox-fake");
+        if(checkboxSettingsFake){
+            checkboxSettingsFake.forEach(function(el){el.addEventListener("click", function(){
+                if(this.classList.contains("active")){
+                    this.classList.remove("active");
+                    this.nextElementSibling.checked = false;
+                }
+                else{
+                    this.classList.add("active");
+                    this.nextElementSibling.checked = true;
+                }
+            })})
+        }
+        const copyLinkButton = document.querySelector('.partner-program-link-value-copy');
+        if(copyLinkButton){
+            copyLinkButton.addEventListener("click", function(){
+                navigator.clipboard.writeText(document.querySelector(".partner-program-link-value").textContent);
+                document.querySelector(".tooltip").classList.add("active");
+                function removeButton(){
+                    document.querySelector(".tooltip").classList.remove("active")
+                }
+                setTimeout(removeButton, 2000);
+            })
+        }
+        const selectShowReferals = document.querySelector(".referals-show-select-content");
+        const selectCountShowReferals = document.getElementsByClassName("referals-show-select-submenu-item");
+        if(selectShowReferals){
+            selectShowReferals.addEventListener("click", function(){
+                if(document.querySelector(".referals-show-select-submenu.active")){
+                    document.querySelector(".referals-show-select-submenu.active").classList.remove("active");
+                }
+                else{
+                    document.querySelector(".referals-show-select-submenu").classList.add("active");
+                }
+            })
+        }
+        if(selectCountShowReferals){
+            selectCountShowReferals.forEach(function(el){el.addEventListener("click", function(){
+                selectShowReferals.value = this.dataset.value;
+                selectShowReferals.textContent = this.textContent;
+                document.querySelector(".referals-show-select-submenu.active").classList.remove("active");
+            })})
+        }
+        let chatListControlPanel = document.getElementsByClassName("support-chat-list-item");
+        if(chatListControlPanel){
+            chatListControlPanel.forEach(function(el){el.addEventListener("click", function(){
+                if(document.querySelector(".support-chat-list-item.active")){
+                    document.querySelector(".support-chat-list-item.active").classList.remove("active");
+                    document.querySelector(".support-chat-message-field.active").classList.remove("active");
+                }
+                if(document.querySelector(".support-chat-message-select-chat.active")){
+                    document.querySelector(".support-chat-message-select-chat.active").classList.remove("active");
+                }
+                document.querySelector(".support-chat-list-item-count-new-message").textContent = 1;
+                this.classList.add("active");
+                document.querySelector(`.support-chat-message-field[data-id="${this.dataset.id}"]`).classList.add("active");
+            })})
+        }
+        let countNewMessage = document.getElementsByClassName("support-chat-list-item-count-new-message");
+        if(countNewMessage){
+            countNewMessage.forEach(function(el){el.addEventListener("DOMSubtreeModified", function(){
+                if(+this.textContent>0 && this.textContent!=""){
+                    this.classList.add("active");
+                }
+                else{
+                    this.classList.remove("active");
+                }
+            })})
         }
 })
