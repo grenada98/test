@@ -118,6 +118,8 @@ body {
 .header-wrapper {
   width: 100%;
   padding: 29px 0 78px 0;
+  position: relative;
+  z-index: 9998;
 }
 
 .section-1-wrapper {
@@ -134,16 +136,31 @@ body {
 }
 
 .section-1-wrapper-background,
+.section-1-wrapper-background-service-page,
 .section-1-wrapper-background-feedback-page,
 .section-1-wrapper-background-help-page,
 .section-1-wrapper-background-contacts-page,
-.section-1-wrapper-background-public-offer-page {
+.section-1-wrapper-background-public-offer-page,
+.section-1-wrapper-background-privacy-policy-page,
+.section-1-wrapper-background-policy-page {
   position: absolute;
   width: 100%;
   top: 0;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   z-index: -1;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
 }
+
+.no-webp .section-1-wrapper-background{
+  background-image: url("../img/substrate.png"); }
+
+.no-webp .section-1-wrapper-background-service-page, .no-webp .section-1-wrapper-background-feedback-page, .no-webp .section-1-wrapper-background-help-page, .no-webp .section-1-wrapper-background-contacts-page, .no-webp .section-1-wrapper-background-public-offer-page, .no-webp .section-1-wrapper-background-privacy-policy-page, .no-webp .section-1-wrapper-background-policy-page{
+  background-image: url("../img/substrate_service.png"); }
 
 .section-1-wrapper-background-adapt,
 .section-1-wrapper-background-adapt-feedback-page {
@@ -290,23 +307,51 @@ nav {
   background-color: #FFFFFF;
 }
 
-.burger:hover .burger-submenu-wrapper {
+.burger-submenu-wrapper.active {
   display: block;
 }
 
 .burger-submenu-wrapper {
   display: none;
-  position: absolute;
-  padding-top: 10px;
-  width: 100px;
-  top: 100%;
-  z-index: 10;
+  position: fixed;
+  width: 100vw;
+  top: 99px;
+  height: calc(100vh - 99px);
+  z-index: 9998;
 }
 
 .burger-submenu {
   padding: 10px;
   list-style: none;
   background-color: #FFFFFF;
+  height: 100%;
+  margin: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #EBF0F8, #3990F1;
+}
+
+.burger-submenu::-webkit-scrollbar-track {
+  background-color: #EBF0F8;
+}
+
+.burger-submenu::-webkit-scrollbar-thumb {
+  background-color: #3990F1;
+}
+
+.burger-submenu::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 3px;
+}
+
+.burger-submenu .header-menu-item {
+  padding: 15px 0;
+  border-bottom: 1px solid gray;
+  margin-right: 0;
+}
+
+.burger-submenu .header-menu-item:last-child {
+  margin-right: 0;
 }
 
 .burger-submenu .header-menu-item a {
@@ -2379,7 +2424,7 @@ footer {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 9999;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 15px;
@@ -3693,10 +3738,6 @@ footer {
   color: #545454;
 }
 
-.header-wrapper.feedback-page {
-  z-index: 999;
-}
-
 .section-1-content.feedback-page {
   width: 70%;
   position: relative;
@@ -4098,6 +4139,10 @@ footer {
 
 .privacy-policy-list li {
   color: #545454;
+}
+
+.section-1-content-title-description.public-offer-page {
+  width: 100%;
 }
 
 .section-1-wrapper-background-public-offer-page img {
@@ -5990,6 +6035,12 @@ ol li a {
   }
 }
 
+@media (max-width: 1800px) {
+  .section-1-content.feedback-page {
+    padding-top: 30px;
+  }
+}
+
 @media (max-width: 1670px) {
   .section-1-wrapper.feedback-page {
     padding-bottom: 200px;
@@ -6001,9 +6052,9 @@ ol li a {
     padding-bottom: 250px;
   }
 
-  .header-wrapper.feedback-page {
-    padding-bottom: 20px;
-  }
+  /*.header-wrapper.feedback-page{
+      padding-bottom: 20px;
+  }*/
 
   .section-1-content.feedback-page {
     padding-top: 0;
@@ -6045,7 +6096,8 @@ ol li a {
   .section-1-wrapper-background-feedback-page,
   .section-1-wrapper-background-help-page,
   .section-1-wrapper-background-contacts-page,
-  .section-1-wrapper-background-public-offer-page {
+  .section-1-wrapper-background-public-offer-page,
+  .section-1-wrapper-background-policy-page {
     top: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -6288,6 +6340,10 @@ ol li a {
     right: 105%;
   }
 
+  .section-1-wrapper-background-service-page {
+    width: 1500px;
+  }
+
   .image-mobile {
     left: 125%;
   }
@@ -6301,12 +6357,17 @@ ol li a {
     left: 25%;
     top: 80%;
   }
+
+  .section-1-wrapper-background-privacy-policy-page {
+    width: 1500px;
+  }
 }
 
 @media (max-width: 1225px) {
-  .header-wrapper {
-    padding-bottom: 29px;
+  /*.header-wrapper{
+      padding-bottom: 29px;
   }
+  */
 
   .section-1 .title {
     line-height: 30px;
@@ -6680,6 +6741,10 @@ ol li a {
   .partner-statistics-wraper {
     width: 30%;
   }
+
+  .section-1-content.public-offer-page {
+    width: 60%;
+  }
 }
 
 @media (max-width: 800px) {
@@ -6752,8 +6817,9 @@ ol li a {
 }
 
 @media (max-width: 740px) {
-  .section-1-wrapper {
-    background-size: 100% 70%;
+  .section-1-wrapper-background {
+    width: 150%;
+    left: 30%;
   }
 
   .section-1-wrapper {
@@ -6855,12 +6921,9 @@ ol li a {
     max-width: 100%;
   }
 
-  .section-1-wrapper-background {
+  .section-1-wrapper.service-page .section-1-wrapper-background {
+    left: 50%;
     width: 800px;
-  }
-
-  .section-1-wrapper.service-page {
-    background-size: 100% 100%;
   }
 
   .section-1.service-page {
@@ -6877,16 +6940,24 @@ ol li a {
   }
 
   .section-1-wrapper-background-help-page {
-    width: 900px;
+    width: 1350px;
   }
 
   .section-1-wrapper.help-page {
-    padding-bottom: 100px;
+    padding-bottom: 150px;
+  }
+
+  .section-1-wrapper.contacts-page {
+    padding-bottom: 160px;
   }
 
   .section-1-wrapper-background-contacts-page,
   .section-1-wrapper-background-public-offer-page {
     width: 950px;
+  }
+
+  .section-1-wrapper-background-public-offer-page {
+    width: 1400px;
   }
 }
 
@@ -6911,13 +6982,12 @@ ol li a {
     max-width: 45%;
   }
 
-  .section-1-wrapper.contacts-page {
-    padding-bottom: 100px;
+  .section-1-wrapper-background-contacts-page {
+    width: 900px;
   }
 
-  .section-1-wrapper-background-contacts-page,
   .section-1-wrapper-background-public-offer-page {
-    width: 900px;
+    width: 1500px;
   }
 
   .history-offer-item-title-img {
@@ -7073,6 +7143,10 @@ ol li a {
     left: 0;
   }
 
+  .section-1-wrapper.public-offer {
+    padding-bottom: 200px;
+  }
+
   .section-1-content.error {
     max-width: 100%;
     width: 100%;
@@ -7086,6 +7160,10 @@ ol li a {
 }
 
 @media (max-width: 600px) {
+  .section-1-wrapper .section-1-wrapper-background {
+    width: 1000px;
+  }
+
   .section-1-wrapper-background {
     width: 800px;
   }
@@ -7169,6 +7247,14 @@ ol li a {
 
   .section-1-wrapper.error {
     padding-bottom: 400px;
+  }
+
+  .section-1-wrapper-background-policy-page {
+    width: 1100px;
+  }
+
+  .section-1-wrapper-background-help-page {
+    width: 1250px;
   }
 }
 
@@ -7333,6 +7419,11 @@ ol li a {
 }
 
 @media (max-width: 495px) {
+  .section-1-wrapper-background {
+    left: 26%;
+    width: 1000px;
+  }
+
   .section-1-content .title {
     font-size: 22px;
     line-height: 30px;
@@ -7454,7 +7545,7 @@ ol li a {
   }
 
   .section-1-wrapper.service-page {
-    padding-bottom: 20px;
+    padding-bottom: 150px;
   }
 
   .image-comp-people {
@@ -7503,6 +7594,10 @@ ol li a {
 
   .section-1-wrapper-background-public-offer-page {
     width: 1200px;
+  }
+
+  .section-1-content.public-offer-page {
+    width: 100%;
   }
 
   .control-panel-header-wrapper {
@@ -7751,6 +7846,10 @@ ol li a {
     font-size: 9px;
   }
 }
+
+.webp .section-1-wrapper-background{ background-image: url(../img/substrate.webp); }
+
+.webp .section-1-wrapper-background-service-page, .webp .section-1-wrapper-background-feedback-page, .webp .section-1-wrapper-background-help-page, .webp .section-1-wrapper-background-contacts-page, .webp .section-1-wrapper-background-public-offer-page, .webp .section-1-wrapper-background-privacy-policy-page, .webp .section-1-wrapper-background-policy-page{ background-image: url(../img/substrate_service.webp); }
 
 .webp .section-3-wrapper{ background-image: url(../img/substrate2.webp); }
 

@@ -80,6 +80,8 @@ body{
 .header-wrapper{
     width: 100%;
     padding: 29px 0 78px 0;
+    position: relative;
+    z-index: 9998;
 }
 .section-1-wrapper{
     display: flex;
@@ -89,15 +91,34 @@ body{
     position: relative;
 }
 .section-1-wrapper-background,
+.section-1-wrapper-background-service-page,
 .section-1-wrapper-background-feedback-page,
 .section-1-wrapper-background-help-page,
 .section-1-wrapper-background-contacts-page,
-.section-1-wrapper-background-public-offer-page{
+.section-1-wrapper-background-public-offer-page,
+.section-1-wrapper-background-privacy-policy-page,
+.section-1-wrapper-background-policy-page{
     position: absolute;
     width: 100%;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: -1;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+}
+.section-1-wrapper-background{
+    background-image: url("../img/substrate.png");
+}
+.section-1-wrapper-background-service-page,
+.section-1-wrapper-background-feedback-page,
+.section-1-wrapper-background-help-page,
+.section-1-wrapper-background-contacts-page,
+.section-1-wrapper-background-public-offer-page,
+.section-1-wrapper-background-privacy-policy-page,
+.section-1-wrapper-background-policy-page{
+    background-image: url("../img/substrate_service.png");
 }
 .section-1-wrapper-background-adapt,
 .section-1-wrapper-background-adapt-feedback-page{
@@ -207,21 +228,44 @@ nav{
     border-radius: 3px;
     background-color: #FFFFFF;
 }
-.burger:hover .burger-submenu-wrapper{
+.burger-submenu-wrapper.active{
     display: block;
 }
 .burger-submenu-wrapper{
     display: none;
-    position: absolute;
-    padding-top: 10px;
-    width: 100px;
-    top: 100%;
-    z-index: 10;
+    position: fixed;
+    width: 100vw;
+    top: 99px;
+    height: calc(100vh - 99px);
+    z-index: 9998;
 }
 .burger-submenu{
     padding: 10px;
     list-style: none;
     background-color: #FFFFFF;
+    height: 100%;
+    margin: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #EBF0F8, #3990F1;
+}
+.burger-submenu::-webkit-scrollbar-track{
+    background-color: #EBF0F8;
+}
+.burger-submenu::-webkit-scrollbar-thumb{
+    background-color: #3990F1;
+}
+.burger-submenu::-webkit-scrollbar{
+    width: 10px;
+    border-radius: 3px;
+}
+.burger-submenu .header-menu-item{
+    padding: 15px 0;
+    border-bottom: 1px solid gray;
+    margin-right: 0;
+}
+.burger-submenu .header-menu-item:last-child{
+    margin-right: 0;
 }
 .burger-submenu .header-menu-item a{
     font-size: 18px;
@@ -1679,7 +1723,7 @@ footer{
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 9999;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 15px;
@@ -2701,9 +2745,6 @@ footer{
 
 
 //////////////////////////////////////////////////////////// feedback page
-.header-wrapper.feedback-page{
-    z-index: 999;
-}
 .section-1-content.feedback-page{
     width: 70%;
     position: relative;
@@ -3033,6 +3074,9 @@ footer{
 
 
 //public offer page
+.section-1-content-title-description.public-offer-page{
+    width: 100%;
+}
 .section-1-wrapper-background-public-offer-page img{
     width: 100%;
 }
@@ -4471,9 +4515,9 @@ ol li::before {
 
 
 // feedback page
-    .header-wrapper.feedback-page{
+    /*.header-wrapper.feedback-page{
         padding-bottom: 20px;
-    }
+    }*/
     .section-1-content.feedback-page{
         padding-top: 0;
     }
@@ -4487,6 +4531,11 @@ ol li::before {
     .section-2-contacts-page-backround-img{
         top: -40%;
         left: 40%;
+    }
+}
+@media (max-width: 1800px){
+    .section-1-content.feedback-page{
+        padding-top: 30px;
     }
 }
 @media (max-width: 1450px){
@@ -4512,7 +4561,8 @@ ol li::before {
     .section-1-wrapper-background-feedback-page,
     .section-1-wrapper-background-help-page,
     .section-1-wrapper-background-contacts-page,
-    .section-1-wrapper-background-public-offer-page{
+    .section-1-wrapper-background-public-offer-page,
+    .section-1-wrapper-background-policy-page{
         top: 0;
         left: 50%;
         transform: translateX(-50%);
@@ -4625,6 +4675,9 @@ ol li::before {
 
 
     //service page
+    .section-1-wrapper-background-service-page{
+        width: 1500px;
+    }
     .image-mobile{
         left: 125%;
     }
@@ -4643,11 +4696,19 @@ ol li::before {
         top: 80%;
     }
 
+
+
+    //privacy-policy
+    .section-1-wrapper-background-privacy-policy-page{
+        width: 1500px;
+    }
+
 }
 @media (max-width: 1225px){
-    .header-wrapper{
+    /*.header-wrapper{
         padding-bottom: 29px;
     }
+    */
     .section-1 .title{
         line-height: 30px;
     }
@@ -4948,6 +5009,12 @@ ol li::before {
     .partner-statistics-wraper{
         width: 30%;
     }
+
+
+
+    .section-1-content.public-offer-page{
+        width: 60%;
+    }
 }
 @media (max-width: 800px){
     .section-2 .list-of-social{
@@ -4980,6 +5047,8 @@ ol li::before {
 
 
 
+    //public offer
+
 
     //panel controll
     .control-panel-body{
@@ -5009,8 +5078,9 @@ ol li::before {
     }
 }
 @media (max-width: 740px){
-    .section-1-wrapper{
-        background-size: 100% 70%;
+    .section-1-wrapper-background{
+        width: 150%;
+        left: 30%;
     }
     .section-1-wrapper{
         padding-bottom: 40px;
@@ -5088,12 +5158,10 @@ ol li::before {
 
 
 
-
-    .section-1-wrapper-background{
+    
+    .section-1-wrapper.service-page .section-1-wrapper-background{
+        left: 50%;
         width: 800px;
-    }
-    .section-1-wrapper.service-page{
-        background-size: 100% 100%;
     }
     .section-1.service-page{
         padding-top: 0;
@@ -5114,17 +5182,26 @@ ol li::before {
 
 
     .section-1-wrapper-background-help-page{
-        width: 900px;
+        width: 1350px;
     }
     .section-1-wrapper.help-page{
-        padding-bottom: 100px;
+        padding-bottom: 150px;
     }
 
 
-
+    .section-1-wrapper.contacts-page{
+        padding-bottom: 160px;
+    }
     .section-1-wrapper-background-contacts-page,
     .section-1-wrapper-background-public-offer-page{
         width: 950px;
+    }
+
+
+
+
+    .section-1-wrapper-background-public-offer-page{
+        width: 1400px;
     }
 }
 @media (max-width: 650px){
@@ -5142,12 +5219,12 @@ ol li::before {
         max-width: 45%;
     }
 
-    .section-1-wrapper.contacts-page{
-        padding-bottom: 100px;
-    }
-    .section-1-wrapper-background-contacts-page,
-    .section-1-wrapper-background-public-offer-page{
+
+    .section-1-wrapper-background-contacts-page{
         width: 900px;
+    }
+    .section-1-wrapper-background-public-offer-page{
+        width: 1500px;
     }
 
 
@@ -5263,6 +5340,13 @@ ol li::before {
     }
 
 
+
+    .section-1-wrapper.public-offer{
+        padding-bottom: 200px;
+    }
+
+
+
     .section-1-content.error{
         max-width: 100%;
         width: 100%;
@@ -5274,6 +5358,9 @@ ol li::before {
     }
 }
 @media (max-width: 600px){
+    .section-1-wrapper .section-1-wrapper-background{
+        width: 1000px;
+    }
     .section-1-wrapper-background{
         width: 800px;
     }
@@ -5338,6 +5425,15 @@ ol li::before {
 
     .section-1-wrapper.error{
         padding-bottom: 400px;
+    }
+
+    .section-1-wrapper-background-policy-page{
+        width: 1100px;
+    }
+
+
+    .section-1-wrapper-background-help-page{
+        width: 1250px;
     }
 }
 @media (max-width: 550px){
@@ -5462,6 +5558,10 @@ ol li::before {
     }
 }
 @media (max-width: 495px){
+    .section-1-wrapper-background{
+        left: 26%;
+        width: 1000px;
+    }
     .section-1-content .title{
         font-size: 22px;
         line-height: 30px;
@@ -5545,7 +5645,7 @@ ol li::before {
     }
 
     .section-1-wrapper.service-page{
-        padding-bottom: 20px;
+        padding-bottom: 150px;
     }
     //page feedback
     .image-comp-people{
@@ -5594,6 +5694,9 @@ ol li::before {
 
     .section-1-wrapper-background-public-offer-page{
         width: 1200px;
+    }
+    .section-1-content.public-offer-page{
+        width: 100%;
     }
 
 

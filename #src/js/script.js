@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         mainDisabled.addEventListener("click", function(event){
             if(event.target==this){
+                console.log("maindisabled");
                 pageActive();
                 mainDisabled.querySelector(".active").classList.remove("active");
             }
@@ -95,10 +96,16 @@ document.addEventListener('DOMContentLoaded', function(){
             }
             if(payUpSelect){
                 if(e.target!=payUpSelect){
-                    console.log("noselect");
                     document.querySelector(".pay-up-balance-form-select-submenu").classList.remove("active");
                 }
             }
+            /*if(burgerMenu){
+                if(e.target!=burgerMenu && e.target!=burgerButton && !e.target.closest(".burger")){
+                    document.querySelector(".burger-submenu-wrapper").classList.remove("active");
+                    pageActive();
+                }
+            }
+            */
         })
 
         const dataTariff = {
@@ -148,7 +155,21 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         const itemServices = Array.from(document.getElementsByClassName("item-service-service-page"));
         
-
+        // burger - menu 
+        const burgerButton = document.querySelector(".burger");
+        const burgerMenu = document.querySelector(".burger-submenu-wrapper");
+        burgerButton.addEventListener("click", function(){
+            if(document.querySelector(".burger-submenu-wrapper.active")){
+                document.querySelector(".burger-submenu-wrapper.active").classList.remove("active");
+                htmlDisabled.classList.remove("disabled");
+                toTop.classList.remove("disabled");
+            }
+            else{
+                burgerMenu.classList.add("active");
+                htmlDisabled.classList.add("disabled");
+                toTop.classList.add("disabled");
+            }
+        })
         ////////////////////////////// Ссылки хедера активные
         const headerLinks = document.getElementsByClassName("header-menu-item");
         headerLinks.forEach(function(el){el.addEventListener("click", function(){
