@@ -826,12 +826,6 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         const listTariffServices = document.querySelector('.services-tariffs');
-        let simpleBarForListTariffServices;
-        if(listTariffServices){
-            simpleBarForListTariffServices = new SimpleBar(listTariffServices, {
-                autoHide: false
-            });
-        }
 
         //////////////////////// LOAD MORE
         let countLoadComments = 3;

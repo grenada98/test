@@ -2528,6 +2528,18 @@ footer{
     border-radius: 10px;
     font-size: 18px;
     font-weight: 600;
+    scrollbar-width: thin;
+    scrollbar-color: #EBF0F8, #3990F1;
+}
+.services-tariffs::-webkit-scrollbar-track{
+    background-color: #EBF0F8;
+}
+.services-tariffs::-webkit-scrollbar-thumb{
+    background-color: #3990F1;
+}
+.services-tariffs::-webkit-scrollbar{
+    width: 10px;
+    border-radius: 3px;
 }
 .item-tariff-of-service{
     display: flex;
@@ -2658,30 +2670,6 @@ footer{
 .section-3-part-2{
     max-width: 570px;
     width: 100%;
-}
-.services-tariffs .simplebar-track.simplebar-horizontal{
-    width: 100%;
-    margin: auto;
-    background-color: rgba(0,0,255,0.1);
-    height: 4px;
-    border-radius: 3px;
-}
-.services-tariffs .simplebar-track.simplebar-horizontal .simplebar-scrollbar {
-    opacity: 1;
-    top: 0;
-}
-.services-tariffs .simplebar-track.simplebar-horizontal .simplebar-scrollbar::before{
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    opacity: 1;
-    background-color: #3990F1;
-    height: 4px;
-}
-.services-tariffs .simplebar-content{
-    display: flex;
-    flex-direction: column;
 }
 .mobile-button-tariff-details-and-offer{
     width: 37px;
@@ -4838,7 +4826,9 @@ ol li::before {
         background-image: none;
     }
     .section-1-wrapper-background{
-        display: none;
+        width: 1200px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
 
@@ -5099,6 +5089,9 @@ ol li::before {
 
 
 
+    .section-1-wrapper-background{
+        width: 800px;
+    }
     .section-1-wrapper.service-page{
         background-size: 100% 100%;
     }
@@ -5114,7 +5107,7 @@ ol li::before {
         line-height: 30px;
     }
     .section-1-wrapper{
-        padding-bottom: 160px;
+        padding-bottom: 140px;
     }
 
 
@@ -5282,10 +5275,7 @@ ol li::before {
 }
 @media (max-width: 600px){
     .section-1-wrapper-background{
-        display: none;
-    }
-    .section-1-wrapper-background-adapt{
-        display: block;
+        width: 800px;
     }
     .section-1-wrapper{
         background-image: none;
@@ -5554,7 +5544,9 @@ ol li::before {
         align-items: center;
     }
 
-
+    .section-1-wrapper.service-page{
+        padding-bottom: 20px;
+    }
     //page feedback
     .image-comp-people{
         display: none;
