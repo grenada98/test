@@ -73,13 +73,17 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: green;
+  background-color: #3990F1;
   position: fixed;
   bottom: 40px;
   right: 40px;
   cursor: pointer;
   opacity: 0;
   z-index: 99999;
+  border: 1px solid #3990F1;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .to-top.disabled {
@@ -87,10 +91,7 @@ body {
 }
 
 .to-top:hover {
-  background-color: yellowgreen;
-  -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
-  transition: 0.4s;
+  background-color: #FFFFFF;
 }
 
 .to-top::after {
@@ -105,14 +106,14 @@ body {
   border-left: 2px solid white;
   width: 15px;
   height: 15px;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .to-top:hover::after {
   border-top: 2px solid blue;
   border-left: 2px solid blue;
-  -webkit-transition: 0.4s;
-  -o-transition: 0.4s;
-  transition: 0.4s;
 }
 
 .header-wrapper {
@@ -1647,6 +1648,10 @@ nav {
   width: 27px;
   height: 27px;
   top: -10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   border-radius: 50%;
   background-color: #4E90D9;
 }
@@ -2218,6 +2223,10 @@ nav {
       align-self: start;
 }
 
+.question {
+  cursor: pointer;
+}
+
 .question,
 .answer {
   width: 100%;
@@ -2362,7 +2371,7 @@ footer {
   content: "";
   position: absolute;
   left: 0;
-  top: 90%;
+  top: 100%;
   width: 0;
   height: 1px;
   background-color: #FFFFFF;
@@ -4448,6 +4457,7 @@ ol li a {
   background-color: #78A1CF;
   border-radius: 50%;
   position: relative;
+  display: block;
 }
 
 .control-panel-body .services-order-continue-button-information::before {
@@ -6847,8 +6857,14 @@ ol li a {
     width: 100%;
   }
 
+  .list-of-achieves {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+
   .item-achieve {
-    padding: 0 15px 0;
+    padding: 0 3px 0;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -7484,9 +7500,6 @@ ol li a {
 
   .list-of-achieves {
     padding-top: 0;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
   }
 
   .section-3-backimg {
@@ -7695,6 +7708,10 @@ ol li a {
     margin-right: 0;
   }
 
+  .item-submenu a {
+    line-height: 25px;
+  }
+
   .settings-account-notifications-header {
     padding-right: 5px;
     padding-left: 5px;
@@ -7769,6 +7786,10 @@ ol li a {
     max-width: 60%;
   }
 
+  .item-submenu {
+    margin-bottom: 20px;
+  }
+
   .edit-offer-details .input-promocode .input-wrapper {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -7788,6 +7809,10 @@ ol li a {
   .control-panel-body .services-order-continue-button {
     padding-right: 10px;
     padding-left: 10px;
+  }
+
+  .control-panel-complete-work {
+    max-width: 32%;
   }
 
   .partner-program-link-value {

@@ -848,26 +848,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const listTariffServices = document.querySelector('.services-tariffs');
 
-        //////////////////////// LOAD MORE
-        let countLoadComments = 3;
-        let feedBackComments = document.getElementsByClassName("item-feedback");
-        const buttonLoadMore = document.querySelector(".load-more-feedback");
-        for(let i = 3; i<feedBackComments.length; i++){
-            feedBackComments[i].classList.add("disabled");
-        }
-        if(buttonLoadMore){
-            buttonLoadMore.addEventListener('click', function(){
-                countLoadComments +=3;
-                if(feedBackComments.length>=countLoadComments){
-                    for(let i=0; i<countLoadComments; i++){
-                        feedBackComments[i].classList.remove("disabled");
-                    }
-                    if(feedBackComments.length==countLoadComments){
-                        buttonLoadMore.classList.add("disabled");
-                    }
-                    simpleBarForListFeedback.recalculate();
-            }})
-        }
         let paginationButtonFeedback = document.getElementsByClassName("pagination-button");
         if(paginationButtonFeedback){
             paginationButtonFeedback.forEach(function(el){el.addEventListener("click", function(){

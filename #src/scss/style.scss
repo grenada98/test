@@ -46,20 +46,21 @@ body{
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color:green;
+    background-color: #3990F1;
     position: fixed;
     bottom: 40px;
     right: 40px;
     cursor: pointer;
     opacity: 0;
     z-index: 99999;
+    border: 1px solid #3990F1;
+    transition: 0.4s;
 }
 .to-top.disabled{
     display: none;
 }
 .to-top:hover{
-    background-color: yellowgreen;
-    transition: 0.4s;
+    background-color: #FFFFFF;
 }
 .to-top::after{
     content: "";
@@ -71,11 +72,11 @@ body{
     border-left: 2px solid white;
     width: 15px;
     height: 15px;
+    transition: 0.4s;
 }
 .to-top:hover::after{
     border-top: 2px solid blue;
     border-left: 2px solid blue;
-    transition: 0.4s;
 }
 .header-wrapper{
     width: 100%;
@@ -1155,6 +1156,8 @@ nav{
     width: 27px;
     height: 27px;
     top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 50%;
     background-color:  #4E90D9;
 }
@@ -1557,6 +1560,9 @@ nav{
     margin-bottom: 30px;
     align-self: start;
 }
+.question{
+    cursor: pointer;
+}
 .question,
 .answer{
     width: 100%;
@@ -1673,7 +1679,7 @@ footer{
     content: "";
     position: absolute;
     left: 0;
-    top: 90%;
+    top: 100%;
     width: 0;
     height: 1px;
     background-color: #FFFFFF;
@@ -3310,6 +3316,7 @@ ol li::before {
     background-color: #78A1CF;
     border-radius: 50%;
     position: relative;
+    display: block;
 }
 .control-panel-body .services-order-continue-button-information::before{
     position: absolute;
@@ -5100,8 +5107,11 @@ ol li::before {
     .section-3-description{
         width: 100%;
     }
+    .list-of-achieves{
+        justify-content: space-between;
+    }
     .item-achieve{
-        padding: 0 15px 0;
+        padding: 0 3px 0;
         align-items: center;
     }
     .achieve-title{
@@ -5606,7 +5616,6 @@ ol li::before {
     }
     .list-of-achieves{
         padding-top: 0;
-        justify-content: center;
     }
     .section-3-backimg{
         display: none;
@@ -5769,6 +5778,9 @@ ol li::before {
     .quest-quality{
         margin-right: 0;
     }
+    .item-submenu a{
+        line-height: 25px;
+    }
 
     .settings-account-notifications-header{
         padding-right: 5px;
@@ -5835,6 +5847,9 @@ ol li::before {
     .footer-submenu.pay{
         max-width: 60%;
     }
+    .item-submenu{
+        margin-bottom: 20px;
+    }
 
 
     // edit offer popup
@@ -5856,6 +5871,10 @@ ol li::before {
         padding-left: 10px;
     }
 
+
+    .control-panel-complete-work{
+        max-width: 32%;
+    }
     .partner-program-link-value{
         padding-right: 5px;
         padding-left: 5px;
