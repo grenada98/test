@@ -219,7 +219,8 @@ nav {
   padding-left: 0;
 }
 
-.header-menu-item {
+.header-menu-item,
+.burger-submenu-panel-control-item {
   margin-right: 30px;
 }
 
@@ -230,9 +231,20 @@ nav {
   line-height: 21.79px;
 }
 
+.burger-submenu-panel-control-item a {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #545454;
+}
+
 .header-menu-item.active a,
 .header-menu-item:hover a {
   text-shadow: -1px -1px 0px #ffffff;
+}
+
+.burger-submenu-panel-control-item {
+  display: none;
 }
 
 .mobile-menu {
@@ -345,7 +357,8 @@ nav {
   border-radius: 3px;
 }
 
-.burger-submenu .header-menu-item {
+.burger-submenu .header-menu-item,
+.burger-submenu-wrapper .burger-submenu-panel-control-item {
   padding: 15px 0;
   border-bottom: 1px solid gray;
   margin-right: 0;
@@ -918,8 +931,10 @@ nav {
   width: 100%;
   padding: 12px 15px;
   background-color: #F8FAFD;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   z-index: 99;
+  border: 1px solid gray;
+  border-top: none;
 }
 
 .list-of-tariff,
@@ -4562,6 +4577,14 @@ ol li a {
   line-height: 24.5px;
   border-radius: 10px;
   cursor: pointer;
+  background-color: #FFFFFF;
+}
+
+.mobile-list-of-social-content.active,
+.mobile-list-of-services-content.active,
+.pay-up-balance-form-select-wrapper input.active {
+  background-color: #a9a9aa;
+  border-radius: 10px 10px 0 0;
 }
 
 .pay-up-balance-form-select-submenu-item {
@@ -7674,6 +7697,10 @@ ol li a {
 
   .support-title {
     margin-bottom: 20px;
+  }
+
+  .burger-submenu-panel-control-item {
+    display: block;
   }
 }
 

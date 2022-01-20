@@ -94,9 +94,21 @@ document.addEventListener('DOMContentLoaded', function(){
                     selectTariffSubmenu.classList.remove("active");
                 }
             }
-            if(payUpSelect){
-                if(e.target!=payUpSelect){
+            if(inputPayUp){
+                if(e.target!=inputPayUp){
                     document.querySelector(".pay-up-balance-form-select-submenu").classList.remove("active");
+                }
+            }
+            if(selectServicesContentMobile){
+                if(e.target!=selectServicesContentMobile){
+                    selectServicesContentMobile.classList.remove("active");
+                    selectServicesSubmenuMobile.classList.remove("active");
+                }
+            }
+            if(selectSocialContent){
+                if(e.target!=selectSocialContent){
+                    selectSocialContent.classList.remove("active");
+                    selectSocialSubmenu.classList.remove("active");
                 }
             }
             /*if(burgerMenu){
@@ -406,57 +418,65 @@ document.addEventListener('DOMContentLoaded', function(){
         })
 
         /////////////////////////////////// select-social
-        const selectSocial = document.querySelector(".mobile-list-of-social-wrapper");
         const selectSocialContent = document.querySelector(".mobile-list-of-social-content");
         const selectSocialSubmenu = document.querySelector(".mobile-list-of-social");
         const selectSocialSubmenuItem = Array.from(document.getElementsByClassName("item-mobile-list-of-social"));
-        if(selectSocial){
-            selectSocial.addEventListener("click", function(){
+        if(selectSocialContent){
+            selectSocialContent.addEventListener("click", function(){
                 if(selectSocialSubmenu.classList.contains("active")){
                     selectSocialSubmenu.classList.remove("active");
+                    this.classList.remove("active");
                 }
                 else{
                     selectSocialSubmenu.classList.add("active");
+                    this.classList.add("active");
                 }
             })
         }
         let nameSocialNetworkMobile = 0;
-        selectSocialSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
-            selectSocialContent.innerHTML = this.innerHTML;
-            selectSocialContent.dataset.name = this.dataset.name;
-            nameSocialNetworkMobile = this.dataset.name;
-            for (let i = 0; i < selectServicesSubmenuItemMobile.length; i++){
-                if( selectServicesSubmenuItemMobile[i].classList.contains("selected")){
-                    selectServicesSubmenuItemMobile[i].classList.remove("selected");
+        if(selectSocialSubmenuItem){
+            selectSocialSubmenuItem.forEach(function(el){ el.addEventListener("click", function(){
+                selectSocialContent.innerHTML = this.innerHTML;
+                selectSocialContent.dataset.name = this.dataset.name;
+                nameSocialNetworkMobile = this.dataset.name;
+                for (let i = 0; i < selectServicesSubmenuItemMobile.length; i++){
+                    if( selectServicesSubmenuItemMobile[i].classList.contains("selected")){
+                        selectServicesSubmenuItemMobile[i].classList.remove("selected");
+                    }
                 }
-            }
-            if(dataSocial[this.dataset.name].length!=null){
-                for (let i=0; i<dataSocial[this.dataset.name].length; i++){
-                    document.querySelector(`.item-mobile-list-of-services[data-name="${dataSocial[this.dataset.name][i]}"]`).classList.add("selected");
+                if(dataSocial[this.dataset.name].length!=null){
+                    for (let i=0; i<dataSocial[this.dataset.name].length; i++){
+                        document.querySelector(`.item-mobile-list-of-services[data-name="${dataSocial[this.dataset.name][i]}"]`).classList.add("selected");
+                    }
                 }
-            }
-        })})
+                selectSocialContent.classList.remove("active");
+                selectSocialSubmenu.classList.remove("active");
+            })})
+        }
         /////////////////////////////////////////////////////
 
          /////////////////////////////////// select-services-mobile
-         const selectServicesMobile = document.querySelector(".mobile-list-of-services-wrapper");
          const selectServicesContentMobile = document.querySelector(".mobile-list-of-services-content");
          const selectServicesSubmenuMobile = document.querySelector(".mobile-list-of-services");
          const selectServicesSubmenuItemMobile = Array.from(document.getElementsByClassName("item-mobile-list-of-services"));
-        if(selectServicesMobile){
-            selectServicesMobile.addEventListener("click", function(){
+        if(selectServicesContentMobile){
+            selectServicesContentMobile.addEventListener("click", function(){
                 if(selectServicesSubmenuMobile.classList.contains("active")){
                     selectServicesSubmenuMobile.classList.remove("active");
+                    this.classList.remove("active");
                 }
                 else{
                     selectServicesSubmenuMobile.classList.add("active");
+                    this.classList.add("active");
                 }
             })
         }
+        if(selectServicesSubmenuItemMobile){
          selectServicesSubmenuItemMobile.forEach(function(el){ el.addEventListener("click", function(){
              selectServicesContentMobile.innerHTML = this.innerHTML;
              selectServicesContentMobile.dataset.name = this.dataset.name;
-             console.log(selectServicesContentMobile.dataset.name);
+             selectServicesSubmenuMobile.classList.remove("active");
+             selectServicesContentMobile.classList.remove("active");
              listTariffServices.innerHTML = "";
                 for(let j=0; j<dataTariff[this.dataset.name].length; j++){
                     let a = document.createElement("div");
@@ -521,6 +541,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
             })})
          })})
+        }
 
 
 
@@ -874,14 +895,21 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.querySelector(`.control-panel-body-content[data-name="${this.dataset.name}"]`).classList.add("active");
             })})
         }
-        const payUpSelect = document.querySelector(".pay-up-balance-form-select-wrapper input");
-        const selectPayUp = document.getElementsByClassName("pay-up-balance-form-select-submenu-item")
+
         const inputPayUp = document.querySelector(".pay-up-balance-form-select-wrapper input");
         if(inputPayUp){
             inputPayUp.addEventListener("click", function(){
-                document.querySelector(".pay-up-balance-form-select-submenu").classList.add("active");
+                if(document.querySelector(".pay-up-balance-form-select-submenu.active")){
+                    document.querySelector(".pay-up-balance-form-select-submenu.active").classList.remove("active");
+                    this.classList.remove("active");
+                }
+                else{
+                    this.classList.add("active");
+                    document.querySelector(".pay-up-balance-form-select-submenu").classList.add("active");
+                }
             })
         }
+        const selectPayUp = document.getElementsByClassName("pay-up-balance-form-select-submenu-item")
         if(selectPayUp){
             selectPayUp.forEach(function(el){el.addEventListener("click", function(){
                 if(document.querySelector(".pay-up-balance-form-select-submenu-item.selected")!=null){
