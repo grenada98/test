@@ -2354,6 +2354,7 @@ footer {
   font-weight: 700;
   line-height: 30px;
   color: #FFFFFF;
+  text-align: start;
 }
 
 .pay {
@@ -2366,12 +2367,12 @@ footer {
   padding-left: 0;
   margin-top: 20px;
   width: 100%;
+  text-align: start;
 }
 
 .item-submenu {
   position: relative;
   width: 100%;
-  text-align: center;
 }
 
 .item-submenu a {
@@ -3998,8 +3999,10 @@ footer {
 }
 
 .link-for-support {
-  max-width: 208px;
+  max-width: 210px;
   padding: 13px 12px 14px 11px;
+  display: block;
+  text-align: center;
 }
 
 .section-2.contacts-page {
@@ -4097,6 +4100,7 @@ footer {
   font-weight: 700;
   line-height: 24.5px;
   color: #545454;
+  margin-bottom: 20px;
 }
 
 .section-2.privacy-policy-page {
@@ -4518,6 +4522,7 @@ ol li a {
 
 .control-panel-body .services-order-continue-button {
   margin-top: 0;
+  max-width: 180px;
 }
 
 .section-1-wrapper.panel-control-page {
@@ -6694,6 +6699,10 @@ ol li a {
   }
 
   .footer-submenu .submenu-title {
+    text-align: center;
+  }
+
+  .item-submenu {
     text-align: center;
   }
 
